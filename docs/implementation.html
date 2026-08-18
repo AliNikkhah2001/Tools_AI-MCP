@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation Guide - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 30px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .step { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .step h3 { color: #58a6ff; font-size: 1.3rem; margin-top: 0; }
+        .step-num { display: inline-block; background: #1f6feb; color: white; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px; font-weight: bold; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        pre code { background: none; padding: 0; }
+        .highlight { background: #1f6feb22; border-left: 4px solid #1f6feb; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .warning { background: #d2992233; border-left: 4px solid #e3b341; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        <h1>Implementation Guide</h1>
+        <p>Step-by-step guide to building your own LLM-controlled multi-agent coding pipeline with OpenCode.</p>
+
+        <div class="step">
+            <h3><span class="step-num">1</span> Foundation: Agent Configuration</h3>
+            <p>Start by defining your specialized agents in <code>.opencode/agents/</code>. Each agent should have a clear role and capabilities.</p>
+            
+            <pre><code>// .opencode/agents/orchestrator.md
+---
+name: orchestrator
+model: anthropic/claude-sonnet-4-20250514
+temperature: 0.3
+tools:
+  - Bash
+  - Read
+  - Grep
+  - Glob
+  - Task
+---
+
+You are the master orchestrator. Your job is to:
+1. Analyze incoming tasks
+2. Break them into subtasks
+3. Route subtasks to appropriate specialist agents
+4. Monitor progress and handle failures
+5. Aggregate results
+
+When delegating, use the Task tool with appropriate subagent_type.</code></pre>
+
+            <pre><code>// .opencode/agents/coder.md
+---
+name: backend-coder
+model: anthropic/claude-sonnet-4-20250514
+temperature: 0.2
+tools:
+  - Bash
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+---
+
+You are a backend coding specialist. Your expertise includes:
+- API development (REST, GraphQL)
+- Database design and queries
+- Server-side logic
+- Authentication and security
+
+Write clean, tested, production-ready code.</code></pre>
+
+            <div class="highlight">
+                <strong>Tip:</strong> Start with 3-4 agents (orchestrator, coder, reviewer, tester) and expand as needed.
+            </div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-num">2</span> Permission Auto-Accept Configuration</h3>
+            <p>Configure OpenCode to automatically accept permissions for low-risk operations while requiring confirmation for dangerous ones.</p>
+
+            <pre><code>// opencode.json - Permission configuration
+{
+    "permissions": {
+        "auto_accept": {
+            "read": ["*"],
+            "write": ["*.md", "*.txt", "*.json"],
+            "bash": {
+                "allowed": [
+                    "npm test",
+                    "npm run lint",
+                    "git status",
+                    "git diff",
+                    "ls",
+                    "cat",
+                    "head",
+                    "tail"
+                ],
+                "requires_confirmation": [
+                    "rm -rf",
+                    "git push",
+                    "npm publish",
+                    "docker",
+                    "sudo"
+                ]
+            }
+        }
+    }
+}</code></pre>
+
+            <div class="warning">
+                <strong>Warning:</strong> Always require confirmation for destructive operations (rm, git push --force, database migrations).
+            </div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-num">3</span> Custom Commands for Orchestration</h3>
+            <p>Create custom commands that enable the orchestrator to manage the pipeline.</p>
+
+            <pre><code>// .opencode/commands/orchestrate.md
+---
+description: Orchestrate a complex task across multiple agents
+allowed-tools: Task, Bash, Read, Grep, Glob
+---
+
+Break down the task: $ARGUMENTS
+
+1. Analyze the requirements
+2. Create a task breakdown
+3. Delegate to appropriate agents:
+   - Use Task with subagent_type "backend" for server-side work
+   - Use Task with subagent_type "frontend" for UI work
+   - Use Task with subagent_type "test" for testing
+4. Monitor progress
+5. Report results</code></pre>
+
+            <pre><code>// .opencode/commands/review.md
+---
+description: Review code changes with quality checks
+allowed-tools: Read, Grep, Bash
+---
+
+Review the recent changes:
+
+1. Check code quality
+2. Run tests: npm test
+3. Run linter: npm run lint
+4. Check for security issues
+5. Provide summary with issues found</code></pre>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-num">4</span> Progress Dashboard Setup</h3>
+            <p>Implement a monitoring dashboard to track agent activity and progress.</p>
+
+            <pre><code>// .opencode/commands/dashboard.md
+---
+description: Show current pipeline status
+allowed-tools: Bash, Read, Grep
+---
+
+Display the current pipeline status:
+
+1. Check running agents: ps aux | grep opencode
+2. Read recent logs: tail -100 .opencode/logs/*.log
+3. Show task queue status
+4. Display metrics:
+   - Tasks completed today
+   - Success rate
+   - Average completion time
+   - Active agents</code></pre>
+
+            <p>For a web-based dashboard, consider:</p>
+            <ul>
+                <li><strong>MLflow:</strong> Experiment tracking and monitoring</li>
+                <li><strong>Langfuse:</strong> LLM observability platform</li>
+                <li><strong>Hermes Studio:</strong> Web-based agent monitoring</li>
+                <li><strong>Grafana:</strong> Custom dashboards with metrics</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-num">5</span> Continuous Operation Loop</h3>
+            <p>Implement the never-stopping loop that keeps the pipeline running.</p>
+
+            <pre><code>// .opencode/commands/continuous.md
+---
+description: Start continuous operation mode
+allowed-tools: Task, Bash, Read, Write, Edit
+---
+
+Start continuous operation:
+
+1. Initialize task queue
+2. Loop:
+   a. Check for pending tasks
+   b. If tasks available:
+      - Pick highest priority task
+      - Delegate to appropriate agent
+      - Wait for completion
+      - Log results
+      - Update dashboard
+   c. If no tasks:
+      - Check for new user input
+      - Run maintenance tasks
+      - Optimize agent prompts (self-improvement)
+   d. Sleep briefly
+   e. Repeat</code></pre>
+
+            <div class="highlight">
+                <strong>Key Insight:</strong> The loop should include a self-improvement step where the system analyzes its own performance and adjusts.
+            </div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-num">6</span> Self-Improvement Integration (SICA)</h3>
+            <p>Implement the self-improvement loop based on the SICA paper.</p>
+
+            <pre><code>// .opencode/commands/self-improve.md
+---
+description: Analyze and improve agent performance
+allowed-tools: Read, Write, Edit, Bash
+---
+
+Analyze recent performance and improve:
+
+1. Collect metrics from last N tasks
+2. Identify patterns:
+   - Which tasks succeeded/failed
+   - Common error types
+   - Time per task type
+3. Generate improvement suggestions:
+   - Prompt modifications
+   - Tool configuration changes
+   - Workflow optimizations
+4. Apply improvements to agent configs
+5. Test improvements on sample tasks
+6. Log improvement results</code></pre>
+
+            <p>This implements the core idea from SICA: the agent edits itself based on experience.</p>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-num">7</span> Experience Replay (CER)</h3>
+            <p>Implement contextual experience replay for learning from past tasks.</p>
+
+            <pre><code>// .opencode/skills/experience-replay/
+// skill.md
+---
+name: experience-replay
+description: Learn from past task experiences
+tools: Read, Write, Grep
+---
+
+Store and retrieve task experiences:
+
+## Store Experience
+After completing a task, store:
+- Task type and description
+- Approach used
+- Success/failure
+- Metrics (time, quality, issues)
+- Lessons learned
+
+## Retrieve Experience
+When facing a new task:
+1. Search for similar past tasks
+2. Review approaches that worked
+3. Avoid approaches that failed
+4. Apply relevant lessons</code></pre>
+
+            <pre><code>// .opencode/skills/experience-replay/scripts/store.sh
+#!/bin/bash
+# Store task experience
+TASK_TYPE=$1
+OUTCOME=$2
+METRICS=$3
+LESSONS=$4
+
+echo "{
+    \"timestamp\": \"$(date -Iseconds)\",
+    \"task_type\": \"$TASK_TYPE\",
+    \"outcome\": \"$OUTCOME\",
+    \"metrics\": $METRICS,
+    \"lessons\": $LESSONS
+}" >> .opencode/experiences.jsonl</code></pre>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-num">8</span> Rules for Safety and Quality</h3>
+            <p>Establish rules that ensure safe and high-quality operation.</p>
+
+            <pre><code>// .opencode/rules/safety.md
+---
+globs: ["**/*"]
+alwaysApply: true
+---
+
+## Safety Rules
+
+1. **Never commit secrets**: Check for API keys, passwords, tokens
+2. **Validate inputs**: Sanitize all user inputs
+3. **Error handling**: Always handle errors gracefully
+4. **Logging**: Log all significant actions
+5. **Rollback**: Always have a rollback plan
+
+## Quality Rules
+
+1. **Test coverage**: Minimum 80% for new code
+2. **Code review**: All changes must be reviewed
+3. **Documentation**: Public APIs must be documented
+4. **Performance**: No regressions in benchmarks</code></pre>
+        </div>
+
+        <h2>Complete Configuration Example</h2>
+        <pre><code>// opencode.json - Complete configuration
+{
+    "name": "multi-agent-pipeline",
+    "version": "1.0.0",
+    "agents": {
+        "orchestrator": {
+            "file": ".opencode/agents/orchestrator.md",
+            "max_concurrent": 1
+        },
+        "backend": {
+            "file": ".opencode/agents/backend.md",
+            "max_concurrent": 3
+        },
+        "frontend": {
+            "file": ".opencode/agents/frontend.md",
+            "max_concurrent": 2
+        },
+        "reviewer": {
+            "file": ".opencode/agents/reviewer.md",
+            "max_concurrent": 1
+        },
+        "tester": {
+            "file": ".opencode/agents/tester.md",
+            "max_concurrent": 2
+        }
+    },
+    "permissions": {
+        "auto_accept": {
+            "read": ["*"],
+            "write": ["*.md", "*.txt", "*.json", "*.ts", "*.js"],
+            "bash": {
+                "allowed": ["npm test", "npm run lint", "git status"],
+                "requires_confirmation": ["rm", "git push", "npm publish"]
+            }
+        }
+    },
+    "mcpServers": {
+        "filesystem": { "command": "npx", "args": ["-y", "@anthropic/mcp-filesystem"] },
+        "github": { "command": "npx", "args": ["-y", "@anthropic/mcp-github"] }
+    }
+}</code></pre>
+
+        <h2>Next Steps</h2>
+        <ol>
+            <li>Set up the basic agent configuration</li>
+            <li>Implement permission auto-accept</li>
+            <li>Create custom commands for orchestration</li>
+            <li>Set up monitoring dashboard</li>
+            <li>Implement continuous operation loop</li>
+            <li>Add self-improvement capabilities</li>
+            <li>Integrate experience replay</li>
+            <li>Establish safety and quality rules</li>
+        </ol>
+    </div>
+</body>
+</html>

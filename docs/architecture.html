@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Patterns - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 30px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .pattern { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .pattern h3 { color: #58a6ff; font-size: 1.3rem; margin-top: 0; }
+        .diagram { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-align: center; font-family: 'Consolas', monospace; font-size: 0.85rem; line-height: 1.6; margin: 15px 0; white-space: pre; overflow-x: auto; }
+        .pros { color: #3fb950; }
+        .cons { color: #f85149; }
+        .use-case { color: #e3b341; }
+        ul { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+        .tag.purple { background: #a371f733; color: #d2a8ff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        <h1>Architecture Patterns for Multi-Agent Orchestration</h1>
+        <p>Six proven patterns for building LLM-controlled coding pipelines.</p>
+
+        <!-- Pattern 1 -->
+        <div class="pattern">
+            <h3>1. Orchestrator-Worker Pattern <span class="tag green">Recommended</span></h3>
+            
+            <div class="diagram">
+                    ┌─────────────────────┐
+                    │   ORCHESTRATOR      │
+                    │   (LLM Router)      │
+                    └──────────┬──────────┘
+                               │
+            ┌──────────────────┼──────────────────┐
+            │                  │                  │
+            ▼                  ▼                  ▼
+    ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+    │ WORKER:      │  │ WORKER:      │  │ WORKER:      │
+    │ Backend Dev  │  │ Frontend Dev │  │ Test Writer  │
+    └──────────────┘  └──────────────┘  └──────────────┘
+            </div>
+
+            <p>A central orchestrator routes tasks to specialized worker agents. The orchestrator decides which agent handles each task based on the task type and agent capabilities.</p>
+
+            <h3>How It Works</h3>
+            <ul>
+                <li>Orchestrator receives task from user or queue</li>
+                <li>Analyzes task requirements and complexity</li>
+                <li>Selects appropriate worker agent(s)</li>
+                <li>Monitors worker execution and handles failures</li>
+                <li>Aggregates results and reports back</li>
+            </ul>
+
+            <p><span class="pros">✓ Pros:</span> Simple to implement, clear separation of concerns, easy to scale horizontally</p>
+            <p><span class="cons">✗ Cons:</span> Single point of failure (orchestrator), may become bottleneck</p>
+            <p><span class="use-case">Best for:</span> Most multi-agent systems, especially when starting out</p>
+
+            <p><strong>OpenCode Implementation:</strong></p>
+            <pre><code>// opencode.json orchestrator config
+{
+    "agents": {
+        "orchestrator": {
+            "model": "anthropic/claude-sonnet-4-20250514",
+            "tools": ["task_delegation", "progress_tracking"],
+            "rules": ["route_to_specialist", "monitor_quality"]
+        },
+        "backend": { "specializes": ["api", "database", "server"] },
+        "frontend": { "specializes": ["ui", "css", "components"] },
+        "reviewer": { "specializes": ["code_review", "security"] }
+    }
+}</code></pre>
+        </div>
+
+        <!-- Pattern 2 -->
+        <div class="pattern">
+            <h3>2. Pipeline Pattern <span class="tag">Sequential</span></h3>
+            
+            <div class="diagram">
+    ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
+    │  PLAN    │───▶│  CODE    │───▶│  REVIEW  │───▶│  DEPLOY  │
+    │  Agent   │    │  Agent   │    │  Agent   │    │  Agent   │
+    └──────────┘    └──────────┘    └──────────┘    └──────────┘
+            </div>
+
+            <p>Tasks flow through a linear sequence of agents. Each agent processes the task and passes it to the next stage. This is the classic software development lifecycle.</p>
+
+            <h3>How It Works</h3>
+            <ul>
+                <li>Task enters the pipeline at stage 1</li>
+                <li>Each stage processes and transforms the task</li>
+                <li>Output of one stage becomes input to the next</li>
+                <li>Final stage produces the deliverable</li>
+            </ul>
+
+            <p><span class="pros">✓ Pros:</span> Predictable flow, easy to monitor, clear quality gates at each stage</p>
+            <p><span class="cons">✗ Cons:</span> Slow (sequential), no parallelism, one failure blocks everything</p>
+            <p><span class="use-case">Best for:</span> Code review pipelines, CI/CD workflows, document generation</p>
+        </div>
+
+        <!-- Pattern 3 -->
+        <div class="pattern">
+            <h3>3. Fan-Out/Fan-In Pattern <span class="tag purple">Parallel</span></h3>
+            
+            <div class="diagram">
+                        ┌──────────────┐
+                        │   FAN-OUT    │
+                        │  (Splitter)  │
+                        └──────┬───────┘
+                               │
+            ┌──────────────────┼──────────────────┐
+            │                  │                  │
+            ▼                  ▼                  ▼
+    ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+    │  Worker 1    │  │  Worker 2    │  │  Worker 3    │
+    │  (Test A)    │  │  (Test B)    │  │  (Test C)    │
+    └──────┬───────┘  └──────┬───────┘  └──────┬───────┘
+           │                 │                 │
+           └─────────────────┼─────────────────┘
+                             │
+                      ┌──────┴───────┐
+                      │   FAN-IN     │
+                      │  (Merger)    │
+                      └──────────────┘
+            </div>
+
+            <p>A task is split into subtasks, executed in parallel by multiple workers, then results are merged. This maximizes throughput for independent subtasks.</p>
+
+            <h3>How It Works</h3>
+            <ul>
+                <li>Splitter breaks task into independent subtasks</li>
+                <li>Subtasks are distributed to workers in parallel</li>
+                <li>Workers execute independently</li>
+                <li>Merger collects and combines results</li>
+            </ul>
+
+            <p><span class="pros">✓ Pros:</span> Maximum parallelism, fast execution, good for batch processing</p>
+            <p><span class="cons">✗ Cons:</span> Complex coordination, result merging can be tricky, requires independent subtasks</p>
+            <p><span class="use-case">Best for:</span> Running multiple tests, parallel code generation, batch analysis</p>
+        </div>
+
+        <!-- Pattern 4 -->
+        <div class="pattern">
+            <h3>4. Priority Queue Loop Pattern <span class="tag">Continuous</span></h3>
+            
+            <div class="diagram">
+    ┌─────────────────────────────────────────┐
+    │           PRIORITY QUEUE               │
+    │  ┌─────┬─────┬─────┬─────┬─────┐      │
+    │  │ P1  │ P2  │ P3  │ P4  │ P5  │ ...  │
+    │  └──┬──┴─────┴─────┴─────┴─────┘      │
+    │     │                                   │
+    └─────┼───────────────────────────────────┘
+          │
+          ▼
+    ┌──────────────┐
+    │   EXECUTOR   │
+    │  (LLM Agent) │
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │  RESULT      │──── Success: Done
+    │  HANDLER     │──── Failure: Re-queue with backoff
+    └──────────────┘
+            </div>
+
+            <p>Tasks are prioritized and executed in order. Failed tasks are re-queued with exponential backoff. This creates a continuous, self-healing work loop.</p>
+
+            <h3>How It Works</h3>
+            <ul>
+                <li>Tasks enter queue with priority levels (P0-P5)</li>
+                <li>Executor picks highest priority task</li>
+                <li>On success: task is marked complete</li>
+                <li>On failure: task is re-queued with lower priority and backoff</li>
+                <li>Loop continues indefinitely</li>
+            </ul>
+
+            <p><span class="pros">✓ Pros:</span> Never stops, self-healing, priority-aware, handles failures gracefully</p>
+            <p><span class="cons">✗ Cons:</span> Can starve low-priority tasks, requires careful priority management</p>
+            <p><span class="use-case">Best for:</span> Continuous coding pipelines, never-stopping agents, production systems</p>
+        </div>
+
+        <!-- Pattern 5 -->
+        <div class="pattern">
+            <h3>5. Self-Improving Loop Pattern <span class="tag green">SICA-inspired</span></h3>
+            
+            <div class="diagram">
+    ┌─────────────────────────────────────────────────┐
+    │                                                 │
+    │  ┌──────────┐    ┌──────────┐    ┌──────────┐ │
+    │  │  EXECUTE │───▶│ ANALYZE  │───▶│ IMPROVE  │ │
+    │  │  (Task)  │    │ (Results)│    │ (Self)   │ │
+    │  └──────────┘    └──────────┘    └────┬─────┘ │
+    │       ▲                               │       │
+    │       └───────────────────────────────┘       │
+    │                                                 │
+    └─────────────────────────────────────────────────┘
+            </div>
+
+            <p>Based on SICA and Self-Harness papers. The agent executes tasks, analyzes its performance, and improves itself. This creates a recursive improvement loop.</p>
+
+            <h3>How It Works</h3>
+            <ul>
+                <li>Agent executes a task</li>
+                <li>Results are analyzed (success/failure, metrics)</li>
+                <li>Agent identifies improvement opportunities</li>
+                <li>Agent modifies its own prompts/tools/strategies</li>
+                <li>Modified agent executes next task (hopefully better)</li>
+            </ul>
+
+            <p><span class="pros">✓ Pros:</span> Continuous improvement, compound gains, adapts to new challenges</p>
+            <p><span class="cons">✗ Cons:</span> Can degrade if improvement criteria are wrong, requires safety checks</p>
+            <p><span class="use-case">Best for:</span> Long-running systems that need to adapt and improve over time</p>
+
+            <p><strong>Implementation Reference:</strong> SICA paper (2025) and Self-Harness (2026)</p>
+        </div>
+
+        <!-- Pattern 6 -->
+        <div class="pattern">
+            <h3>6. Spec-Driven Pattern <span class="tag purple">Formal</span></h3>
+            
+            <div class="diagram">
+    ┌──────────────┐
+    │  SPEC DOC    │ (Requirements)
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │  PLANNER     │ (Task breakdown)
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │  IMPLEMENTER │ (Code generation)
+    └──────┬───────┘
+           │
+           ▼
+    ┌──────────────┐
+    │  VERIFIER    │ (Spec compliance)
+    └──────┬───────┘
+           │
+    ┌──────┴──────┐
+    │             │
+    ▼             ▼
+  PASS         FAIL → Re-implement
+            </div>
+
+            <p>Tasks are driven by formal specifications. The system generates code that must satisfy the spec, then verifies compliance. This is the most rigorous approach.</p>
+
+            <h3>How It Works</h3>
+            <ul>
+                <li>Specification defines requirements formally</li>
+                <li>Planner breaks spec into implementation tasks</li>
+                <li>Implementer generates code for each task</li>
+                <li>Verifier checks code against spec</li>
+                <li>If verification fails, code is regenerated</li>
+            </ul>
+
+            <p><span class="pros">✓ Pros:</span> Highest quality, formally verified, production-ready output</p>
+            <p><span class="cons">✗ Cons:</span> Slow, requires formal specs, not all tasks can be formally specified</p>
+            <p><span class="use-case">Best for:</span> Safety-critical systems, financial code, medical software</p>
+        </div>
+
+        <h2>Pattern Selection Guide</h2>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <thead>
+                <tr style="background: #161b22;">
+                    <th style="border: 1px solid #30363d; padding: 10px; text-align: left; color: #58a6ff;">Pattern</th>
+                    <th style="border: 1px solid #30363d; padding: 10px; text-align: left; color: #58a6ff;">Complexity</th>
+                    <th style="border: 1px solid #30363d; padding: 10px; text-align: left; color: #58a6ff;">Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Orchestrator-Worker</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Low-Medium</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">General multi-agent systems</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Pipeline</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Low</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Sequential workflows</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Fan-Out/Fan-In</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Medium</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Parallel processing</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Priority Queue Loop</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Medium</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Continuous operation</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Self-Improving Loop</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">High</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Adaptive systems</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Spec-Driven</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">High</td>
+                    <td style="border: 1px solid #30363d; padding: 10px;">Safety-critical systems</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Recommended: Hybrid Approach</h2>
+        <p>For our OpenCode multi-agent system, we recommend combining patterns:</p>
+        <ul>
+            <li><strong>Orchestrator-Worker</strong> for task routing (base pattern)</li>
+            <li><strong>Priority Queue Loop</strong> for continuous operation</li>
+            <li><strong>Self-Improving Loop</strong> for agent optimization</li>
+            <li><strong>Fan-Out/Fan-In</strong> for parallel testing</li>
+        </ul>
+    </div>
+</body>
+</html>

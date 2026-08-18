@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vision - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 30px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        p { margin-bottom: 15px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        pre { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        pre code { background: none; padding: 0; }
+        .highlight { background: #1f6feb22; border-left: 4px solid #1f6feb; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .highlight strong { color: #58a6ff; }
+        ul { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .diagram { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; text-align: center; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.8; margin: 20px 0; white-space: pre; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        <h1>The Vision: LLM-Controlled Coding Pipeline</h1>
+        
+        <div class="highlight">
+            <strong>Core Idea:</strong> Build a system where an LLM controls OpenCode to continuously prompt, accept permissions, and never stop coding — like a company software development pipeline with planner, code reviewer, documenter agents and a progress dashboard.
+        </div>
+
+        <h2>Why This Exists</h2>
+        <p>Current LLM coding tools have fundamental limitations:</p>
+        <ul>
+            <li><strong>Single-shot interaction:</strong> You prompt once, get one response, done</li>
+            <li><strong>No continuous operation:</strong> The system stops after each task</li>
+            <li><strong>No permission auto-accept:</strong> Human must approve every dangerous action</li>
+            <li><strong>No quality gates:</strong> No review process, no testing, no validation</li>
+            <li><strong>No progress tracking:</strong> No dashboard, no metrics, no visibility</li>
+        </ul>
+
+        <h2>The Dream Architecture</h2>
+        <div class="diagram">
+┌─────────────────────────────────────────────────────────────────┐
+│                     HUMAN USER (Inputs Goal)                    │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    PLANNER AGENT (LLM)                          │
+│  • Analyzes goal and breaks into subtasks                      │
+│  • Creates execution plan with dependencies                    │
+│  • Delegates to specialized agents                              │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+          ┌───────────────┼───────────────┐
+          │               │               │
+          ▼               ▼               ▼
+┌──────────────┐ ┌──────────────┐ ┌──────────────┐
+│ CODING AGENT │ │ REVIEWER AG. │ │ DOC WRITER   │
+│ (Backend)    │ │ (Quality)    │ │ (Docs)       │
+└──────┬───────┘ └──────┬───────┘ └──────┬───────┘
+       │                │                │
+       └────────────────┼────────────────┘
+                        │
+                        ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              PROGRESS DASHBOARD (Real-time)                     │
+│  • Task completion %  • Code quality  • Issues resolved         │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                PERMISSION AUTO-ACCEPT                           │
+│  • Smart approval based on risk level                          │
+│  • Human override for critical operations                      │
+└─────────────────────────────────────────────────────────────────┘
+        </div>
+
+        <h2>Key Components</h2>
+        
+        <h3>1. Multi-Agent Orchestration</h3>
+        <p>The system uses multiple specialized agents working together:</p>
+        <ul>
+            <li><strong>Planner Agent:</strong> Breaks goals into actionable tasks</li>
+            <li><strong>Coding Agents:</strong> Backend, Frontend, ML specialists</li>
+            <li><strong>Review Agent:</strong> Quality assurance and code review</li>
+            <li><strong>Security Agent:</strong> Vulnerability scanning and compliance</li>
+            <li><strong>Documenter Agent:</strong> Documentation generation</li>
+            <li><strong>Test Agent:</strong> Test writing and execution</li>
+        </ul>
+
+        <h3>2. Continuous Operation</h3>
+        <p>The system never stops. It continuously:</p>
+        <ul>
+            <li>Monitors for new tasks or issues</li>
+            <li>Picks up work from the queue</li>
+            <li>Self-corrects when errors occur</li>
+            <li>Improves its own prompts and processes</li>
+        </ul>
+
+        <h3>3. Permission Auto-Accept</h3>
+        <p>Smart permission management based on risk levels:</p>
+        <ul>
+            <li><strong>Low risk:</strong> Auto-approve (reading files, small edits)</li>
+            <li><strong>Medium risk:</strong> Auto-approve with logging</li>
+            <li><strong>High risk:</strong> Require human confirmation</li>
+        </ul>
+
+        <h3>4. Progress Dashboard</h3>
+        <p>Real-time monitoring of the entire pipeline:</p>
+        <ul>
+            <li>Task completion status</li>
+            <li>Agent activity logs</li>
+            <li>Code quality metrics</li>
+            <li>Error rates and resolution</li>
+            <li>Performance benchmarks</li>
+        </ul>
+
+        <h2>Academic Foundations</h2>
+        <p>This vision is backed by 5 key research papers:</p>
+        <ul>
+            <li><strong>SICA (2025):</strong> Self-Improving Code Agents — 17-53% gains on SWE-Bench</li>
+            <li><strong>Self-Harness (2026):</strong> Harnesses that improve themselves — 15-52% gains</li>
+            <li><strong>AlphaEvolve (2025):</strong> Google DeepMind evolutionary coding for scientific discovery</li>
+            <li><strong>STOP (2024):</strong> Recursively self-improving code generation with safety proofs</li>
+            <li><strong>CER (2025):</strong> Contextual Experience Replay for agent self-improvement</li>
+        </ul>
+
+        <h2>Implementation Status</h2>
+        <div class="highlight">
+            <strong>Current State:</strong> 7 specialized agents configured, 8 custom commands, 5 skills, 12 MCP servers, comprehensive rules — all orchestrated through OpenCode.
+        </div>
+    </div>
+</body>
+</html>

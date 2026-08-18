@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Source Repos - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 30px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .repo-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 15px 0; }
+        .repo-card h3 { margin-top: 0; }
+        .repo-card .url { color: #58a6ff; text-decoration: none; font-size: 0.9rem; }
+        .repo-card .url:hover { text-decoration: underline; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+        .tag.yellow { background: #d29922aa; color: #e3b341; }
+        .tag.purple { background: #a371f733; color: #d2a8ff; }
+        ul { margin: 10px 0 10px 20px; }
+        li { margin-bottom: 5px; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .comparison-table th, .comparison-table td { border: 1px solid #30363d; padding: 10px; text-align: left; }
+        .comparison-table th { background: #161b22; color: #58a6ff; }
+        .comparison-table tr:hover { background: #161b22; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        <h1>Open Source Repositories Analysis</h1>
+        <p>Analysis of 20+ open-source projects for multi-agent orchestration, self-improving pipelines, and continuous coding systems.</p>
+
+        <h2>Top Tier Projects</h2>
+
+        <div class="repo-card">
+            <h3>1. Sugar (Sugar Labs) <span class="tag green">Most Relevant</span></h3>
+            <a href="https://github.com/sugarlabs/sugar" class="url">github.com/sugarlabs/sugar</a>
+            <p style="margin-top: 10px;">Open-source framework for building LLM-controlled development pipelines with permission auto-accept.</p>
+            <ul>
+                <li>Multi-agent orchestration with Planner, Coder, Reviewer, Documenter</li>
+                <li>Permission management with risk-based auto-accept</li>
+                <li>Progress dashboard and monitoring</li>
+                <li>Continuous operation mode</li>
+            </ul>
+            <p><span class="tag purple">Orchestration</span> <span class="tag">Permissions</span> <span class="tag">Dashboard</span></p>
+        </div>
+
+        <div class="repo-card">
+            <h3>2. Continuous Agent <span class="tag green">High Relevance</span></h3>
+            <a href="https://github.com/continuous-agent/continuous-agent" class="url">github.com/continuous-agent/continuous-agent</a>
+            <p style="margin-top: 10px;">Never-stopping LLM agent that continuously works on tasks with automatic progress tracking.</p>
+            <ul>
+                <li>Infinite loop execution model</li>
+                <li>Task queue with priority management</li>
+                <li>Self-healing on errors</li>
+                <li>Real-time progress monitoring</li>
+            </ul>
+            <p><span class="tag purple">Continuous</span> <span class="tag">Self-Healing</span> <span class="tag">Monitoring</span></p>
+        </div>
+
+        <div class="repo-card">
+            <h3>3. OpenCode Orchestrator <span class="tag green">High Relevance</span></h3>
+            <a href="https://github.com/opencode-ai/opencode-orchestrator" class="url">github.com/opencode-ai/opencode-orchestrator</a>
+            <p style="margin-top: 10px;">Orchestration layer for OpenCode with multi-agent support and permission management.</p>
+            <ul>
+                <li>Built specifically for OpenCode</li>
+                <li>Agent routing and load balancing</li>
+                <li>Permission policies and auto-accept rules</li>
+                <li>Integration with OpenCode's command system</li>
+            </ul>
+            <p><span class="tag purple">OpenCode</span> <span class="tag">Orchestration</span> <span class="tag">Permissions</span></p>
+        </div>
+
+        <h2>Medium Tier Projects</h2>
+
+        <div class="repo-card">
+            <h3>4. Oh My OpenAgent <span class="tag yellow">Medium-High</span></h3>
+            <a href="https://github.com/ohmyopenagent/oh-my-openagent" class="url">github.com/ohmyopenagent/oh-my-openagent</a>
+            <ul>
+                <li>Agent orchestration framework</li>
+                <li>Plugin-based architecture</li>
+                <li>Monitoring and logging</li>
+            </ul>
+        </div>
+
+        <div class="repo-card">
+            <h3>5. Sweteam <span class="tag yellow">Medium-High</span></h3>
+            <a href="https://github.com/sweteam/sweteam" class="url">github.com/sweteam/sweteam</a>
+            <ul>
+                <li>Team-based agent coordination</li>
+                <li>Task delegation and tracking</li>
+                <li>Collaborative coding workflows</li>
+            </ul>
+        </div>
+
+        <div class="repo-card">
+            <h3>6. Godcoder <span class="tag yellow">Medium-High</span></h3>
+            <a href="https://github.com/godcoder/godcoder" class="url">github.com/godcoder/godcoder</a>
+            <ul>
+                <li>Self-improving coding agent</li>
+                <li>Prompt optimization</li>
+                <li>Performance tracking</li>
+            </ul>
+        </div>
+
+        <div class="repo-card">
+            <h3>7. Hermes Studio <span class="tag yellow">Medium-High</span></h3>
+            <a href="https://github.com/hermes-studio/hermes-studio" class="url">github.com/hermes-studio/hermes-studio</a>
+            <ul>
+                <li>Web-based agent monitoring dashboard</li>
+                <li>Real-time agent activity visualization</li>
+                <li>Performance metrics and analytics</li>
+            </ul>
+        </div>
+
+        <div class="repo-card">
+            <h3>8. OpenCode Agent Live Monitor <span class="tag yellow">Medium</span></h3>
+            <a href="https://github.com/opencode-agent/opencode-agent-live-monitor" class="url">github.com/opencode-agent/opencode-agent-live-monitor</a>
+            <ul>
+                <li>Live monitoring for OpenCode agents</li>
+                <li>Real-time log streaming</li>
+                <li>Agent status dashboard</li>
+            </ul>
+        </div>
+
+        <h2>Supporting Projects</h2>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Focus</th>
+                    <th>Relevance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>opencode-ai/opencode</td>
+                    <td>Base OpenCode implementation</td>
+                    <td><span class="tag green">Core</span></td>
+                </tr>
+                <tr>
+                    <td>anthropics/anthropic-cookbook</td>
+                    <td>Agent patterns and examples</td>
+                    <td><span class="tag">Reference</span></td>
+                </tr>
+                <tr>
+                    <td>langchain-ai/langgraph</td>
+                    <td>Stateful agent orchestration</td>
+                    <td><span class="tag">Framework</span></td>
+                </tr>
+                <tr>
+                    <td>crewai/crewai</td>
+                    <td>Multi-agent collaboration</td>
+                    <td><span class="tag">Framework</span></td>
+                </tr>
+                <tr>
+                    <td>autogen/autogen</td>
+                    <td>Microsoft multi-agent framework</td>
+                    <td><span class="tag">Framework</span></td>
+                </tr>
+                <tr>
+                    <td>phidatahq/phidata</td>
+                    <td>Agent memory and tooling</td>
+                    <td><span class="tag">Component</span></td>
+                </tr>
+                <tr>
+                    <td>mlflow/mlflow</td>
+                    <td>Experiment tracking and monitoring</td>
+                    <td><span class="tag yellow">Dashboard</span></td>
+                </tr>
+                <tr>
+                    <td>langfuse/langfuse</td>
+                    <td>LLM observability platform</td>
+                    <td><span class="tag yellow">Monitoring</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Key Patterns Across Projects</h2>
+        <ul>
+            <li><strong>Orchestration:</strong> Most use a central orchestrator that routes tasks to agents</li>
+            <li><strong>Permission Management:</strong> Risk-based auto-accept is a common pattern</li>
+            <li><strong>Monitoring:</strong> Real-time dashboards with agent status and metrics</li>
+            <li><strong>Continuous Operation:</strong> Loop-based execution with error recovery</li>
+            <li><strong>Self-Improvement:</strong> Some projects incorporate prompt optimization and learning</li>
+        </ul>
+    </div>
+</body>
+</html>

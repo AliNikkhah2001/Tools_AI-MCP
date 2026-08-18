@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparisons - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 30px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #30363d; padding: 12px; text-align: left; }
+        th { background: #161b22; color: #58a6ff; font-weight: 600; }
+        tr:hover { background: #161b22; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+        .tag.yellow { background: #d29922aa; color: #e3b341; }
+        .tag.red { background: #da3633aa; color: #f85149; }
+        .tag.purple { background: #a371f733; color: #d2a8ff; }
+        .highlight { background: #1f6feb22; border-left: 4px solid #1f6feb; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        ul { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        <h1>Comparisons: Papers & Projects</h1>
+        <p>Side-by-side comparison of all papers and open-source projects.</p>
+
+        <h2>Papers Comparison</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Paper</th>
+                    <th>Year</th>
+                    <th>Core Idea</th>
+                    <th>Performance</th>
+                    <th>Safety</th>
+                    <th>Complexity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SICA</strong></td>
+                    <td>2025</td>
+                    <td>Agent edits itself</td>
+                    <td><span class="tag green">17-53%</span> SWE-Bench</td>
+                    <td><span class="tag yellow">Medium</span></td>
+                    <td><span class="tag">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Self-Harness</strong></td>
+                    <td>2026</td>
+                    <td>Harnesses improve themselves</td>
+                    <td><span class="tag green">15-52%</span> Terminal-Bench</td>
+                    <td><span class="tag yellow">Medium</span></td>
+                    <td><span class="tag purple">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>AlphaEvolve</strong></td>
+                    <td>2025</td>
+                    <td>Evolutionary coding</td>
+                    <td><span class="tag green">Novel algorithms</span></td>
+                    <td><span class="tag green">High</span></td>
+                    <td><span class="tag purple">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>STOP</strong></td>
+                    <td>2024</td>
+                    <td>Safe recursive improvement</td>
+                    <td><span class="tag green">Proven safety</span></td>
+                    <td><span class="tag green">Proven</span></td>
+                    <td><span class="tag purple">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>CER</strong></td>
+                    <td>2025</td>
+                    <td>Contextual experience replay</td>
+                    <td><span class="tag green">Significant</span></td>
+                    <td><span class="tag green">High</span></td>
+                    <td><span class="tag">Medium</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Key Differences</h2>
+        
+        <div class="card">
+            <h3>SICA vs Self-Harness</h3>
+            <ul>
+                <li><strong>SICA:</strong> Agent modifies its own prompts and tools</li>
+                <li><strong>Self-Harness:</strong> The entire control infrastructure (harness) is optimized</li>
+                <li><strong>Key difference:</strong> Self-Harness operates at a higher abstraction level — it improves the system that controls the agent, not just the agent itself</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>AlphaEvolve vs Traditional Approaches</h3>
+            <ul>
+                <li><strong>AlphaEvolve:</strong> Uses evolutionary algorithms with LLMs as mutation operators</li>
+                <li><strong>Traditional:</strong> Uses LLMs for direct code generation</li>
+                <li><strong>Key difference:</strong> AlphaEvolve maintains a population of solutions and evolves them, rather than generating a single solution</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>STOP vs Other Self-Improvement</h3>
+            <ul>
+                <li><strong>STOP:</strong> Provides mathematical safety proofs for recursive improvement</li>
+                <li><strong>Others:</strong> Improve without formal safety guarantees</li>
+                <li><strong>Key difference:</strong> STOP proves that safety properties hold across improvement iterations</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>CER vs Simple Experience Storage</h3>
+            <ul>
+                <li><strong>CER:</strong> Stores experiences with rich context and retrieves based on contextual similarity</li>
+                <li><strong>Simple storage:</strong> Stores experiences by task type only</li>
+                <li><strong>Key difference:</strong> CER enables transfer learning across related but different tasks</li>
+            </ul>
+        </div>
+
+        <h2>Open Source Projects Comparison</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Focus</th>
+                    <th>Orchestration</th>
+                    <th>Monitoring</th>
+                    <th>Self-Improvement</th>
+                    <th>Maturity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Sugar</strong></td>
+                    <td>Full pipeline</td>
+                    <td><span class="tag green">Yes</span></td>
+                    <td><span class="tag green">Yes</span></td>
+                    <td><span class="tag yellow">Partial</span></td>
+                    <td><span class="tag green">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Continuous Agent</strong></td>
+                    <td>Never-stopping</td>
+                    <td><span class="tag yellow">Basic</span></td>
+                    <td><span class="tag green">Yes</span></td>
+                    <td><span class="tag red">No</span></td>
+                    <td><span class="tag yellow">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>OpenCode Orchestrator</strong></td>
+                    <td>OpenCode integration</td>
+                    <td><span class="tag green">Yes</span></td>
+                    <td><span class="tag yellow">Basic</span></td>
+                    <td><span class="tag red">No</span></td>
+                    <td><span class="tag yellow">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Hermes Studio</strong></td>
+                    <td>Monitoring</td>
+                    <td><span class="tag red">No</span></td>
+                    <td><span class="tag green">Yes</span></td>
+                    <td><span class="tag red">No</span></td>
+                    <td><span class="tag green">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Godcoder</strong></td>
+                    <td>Self-improvement</td>
+                    <td><span class="tag yellow">Basic</span></td>
+                    <td><span class="tag yellow">Basic</span></td>
+                    <td><span class="tag green">Yes</span></td>
+                    <td><span class="tag yellow">Medium</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Performance Metrics</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>System</th>
+                    <th>Benchmark</th>
+                    <th>Score</th>
+                    <th>Improvement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SICA</td>
+                    <td>SWE-Bench Verified</td>
+                    <td>53%</td>
+                    <td><span class="tag green">+53%</span></td>
+                </tr>
+                <tr>
+                    <td>Self-Harness</td>
+                    <td>Terminal-Bench-2.0</td>
+                    <td>52%</td>
+                    <td><span class="tag green">+52%</span></td>
+                </tr>
+                <tr>
+                    <td>AlphaEvolve</td>
+                    <td>Matrix Multiplication</td>
+                    <td>Novel</td>
+                    <td><span class="tag green">Outperforms human</span></td>
+                </tr>
+                <tr>
+                    <td>CER</td>
+                    <td>Agent Benchmarks</td>
+                    <td>Significant</td>
+                    <td><span class="tag green">+30-40%</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Trade-off Analysis</h2>
+        
+        <div class="highlight">
+            <strong>For Our Use Case (OpenCode Multi-Agent Pipeline):</strong>
+            <ul style="margin-top: 10px;">
+                <li><strong>Start with:</strong> Orchestrator-Worker pattern + Priority Queue Loop (from repos)</li>
+                <li><strong>Add self-improvement:</strong> Implement SICA's self-editing approach</li>
+                <li><strong>Add experience:</strong> Implement CER's contextual replay</li>
+                <li><strong>Ensure safety:</strong> Apply STOP's safety principles for critical operations</li>
+                <li><strong>Optimize over time:</strong> Use AlphaEvolve's evolutionary approach for prompt optimization</li>
+            </ul>
+        </div>
+
+        <h2>Recommendation Matrix</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>If You Need...</th>
+                    <th>Use This Paper/Project</th>
+                    <th>Why</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Quick start with orchestration</td>
+                    <td>Sugar or OpenCode Orchestrator</td>
+                    <td>Ready-to-use orchestration framework</td>
+                </tr>
+                <tr>
+                    <td>Never-stopping operation</td>
+                    <td>Continuous Agent + Priority Queue Loop</td>
+                    <td>Built for continuous execution</td>
+                </tr>
+                <tr>
+                    <td>Self-improving agents</td>
+                    <td>SICA + Self-Harness</td>
+                    <td>Proven self-improvement methods</td>
+                </tr>
+                <tr>
+                    <td>Safety-critical operations</td>
+                    <td>STOP principles</td>
+                    <td>Mathematical safety guarantees</td>
+                </tr>
+                <tr>
+                    <td>Learning from experience</td>
+                    <td>CER</td>
+                    <td>Context-aware experience replay</td>
+                </tr>
+                <tr>
+                    <td>Monitoring and dashboards</td>
+                    <td>Hermes Studio + MLflow</td>
+                    <td>Best monitoring tools available</td>
+                </tr>
+                <tr>
+                    <td>Optimizing agent configurations</td>
+                    <td>AlphaEvolve approach</td>
+                    <td>Evolutionary optimization of prompts</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
