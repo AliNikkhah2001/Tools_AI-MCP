@@ -15,7 +15,7 @@
         .back:hover { text-decoration: underline; }
         .pattern { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
         .pattern h3 { color: #58a6ff; font-size: 1.3rem; margin-top: 0; }
-        .diagram { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-align: center; font-family: 'Consolas', monospace; font-size: 0.85rem; line-height: 1.6; margin: 15px 0; white-space: pre; overflow-x: auto; }
+        .diagram { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-align: center; margin: 15px 0; overflow-x: auto; }
         .pros { color: #3fb950; }
         .cons { color: #f85149; }
         .use-case { color: #e3b341; }
@@ -25,6 +25,10 @@
         .tag.green { background: #2ea04333; color: #3fb950; }
         .tag.purple { background: #a371f733; color: #d2a8ff; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -37,18 +41,12 @@
             <h3>1. Orchestrator-Worker Pattern <span class="tag green">Recommended</span></h3>
             
             <div class="diagram">
-                    ┌─────────────────────┐
-                    │   ORCHESTRATOR      │
-                    │   (LLM Router)      │
-                    └──────────┬──────────┘
-                               │
-            ┌──────────────────┼──────────────────┐
-            │                  │                  │
-            ▼                  ▼                  ▼
-    ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-    │ WORKER:      │  │ WORKER:      │  │ WORKER:      │
-    │ Backend Dev  │  │ Frontend Dev │  │ Test Writer  │
-    └──────────────┘  └──────────────┘  └──────────────┘
+                <pre class="mermaid">
+graph TD
+    O[Orchestrator LLM Router] --> W1[Worker Backend Dev]
+    O --> W2[Worker Frontend Dev]
+    O --> W3[Worker Test Writer]
+                </pre>
             </div>
 
             <p>A central orchestrator routes tasks to specialized worker agents. The orchestrator decides which agent handles each task based on the task type and agent capabilities.</p>
@@ -87,10 +85,12 @@
             <h3>2. Pipeline Pattern <span class="tag">Sequential</span></h3>
             
             <div class="diagram">
-    ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
-    │  PLAN    │───▶│  CODE    │───▶│  REVIEW  │───▶│  DEPLOY  │
-    │  Agent   │    │  Agent   │    │  Agent   │    │  Agent   │
-    └──────────┘    └──────────┘    └──────────┘    └──────────┘
+                <pre class="mermaid">
+graph LR
+    P[Plan Agent] --> C[Code Agent]
+    C --> R[Review Agent]
+    R --> D[Deploy Agent]
+                </pre>
             </div>
 
             <p>Tasks flow through a linear sequence of agents. Each agent processes the task and passes it to the next stage. This is the classic software development lifecycle.</p>
@@ -113,25 +113,15 @@
             <h3>3. Fan-Out/Fan-In Pattern <span class="tag purple">Parallel</span></h3>
             
             <div class="diagram">
-                        ┌──────────────┐
-                        │   FAN-OUT    │
-                        │  (Splitter)  │
-                        └──────┬───────┘
-                               │
-            ┌──────────────────┼──────────────────┐
-            │                  │                  │
-            ▼                  ▼                  ▼
-    ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-    │  Worker 1    │  │  Worker 2    │  │  Worker 3    │
-    │  (Test A)    │  │  (Test B)    │  │  (Test C)    │
-    └──────┬───────┘  └──────┬───────┘  └──────┬───────┘
-           │                 │                 │
-           └─────────────────┼─────────────────┘
-                             │
-                      ┌──────┴───────┐
-                      │   FAN-IN     │
-                      │  (Merger)    │
-                      └──────────────┘
+                <pre class="mermaid">
+graph TD
+    FO[Fan-Out Splitter] --> W1[Worker 1 Test A]
+    FO --> W2[Worker 2 Test B]
+    FO --> W3[Worker 3 Test C]
+    W1 --> FI[Fan-In Merger]
+    W2 --> FI
+    W3 --> FI
+                </pre>
             </div>
 
             <p>A task is split into subtasks, executed in parallel by multiple workers, then results are merged. This maximizes throughput for independent subtasks.</p>
@@ -154,25 +144,13 @@
             <h3>4. Priority Queue Loop Pattern <span class="tag">Continuous</span></h3>
             
             <div class="diagram">
-    ┌─────────────────────────────────────────┐
-    │           PRIORITY QUEUE               │
-    │  ┌─────┬─────┬─────┬─────┬─────┐      │
-    │  │ P1  │ P2  │ P3  │ P4  │ P5  │ ...  │
-    │  └──┬──┴─────┴─────┴─────┴─────┘      │
-    │     │                                   │
-    └─────┼───────────────────────────────────┘
-          │
-          ▼
-    ┌──────────────┐
-    │   EXECUTOR   │
-    │  (LLM Agent) │
-    └──────┬───────┘
-           │
-           ▼
-    ┌──────────────┐
-    │  RESULT      │──── Success: Done
-    │  HANDLER     │──── Failure: Re-queue with backoff
-    └──────────────┘
+                <pre class="mermaid">
+graph TD
+    PQ[Priority Queue P1-P5] --> E[Executor LLM Agent]
+    E --> RH[Result Handler]
+    RH -->|Success| D[Done]
+    RH -->|Failure| PQ
+                </pre>
             </div>
 
             <p>Tasks are prioritized and executed in order. Failed tasks are re-queued with exponential backoff. This creates a continuous, self-healing work loop.</p>
@@ -196,16 +174,12 @@
             <h3>5. Self-Improving Loop Pattern <span class="tag green">SICA-inspired</span></h3>
             
             <div class="diagram">
-    ┌─────────────────────────────────────────────────┐
-    │                                                 │
-    │  ┌──────────┐    ┌──────────┐    ┌──────────┐ │
-    │  │  EXECUTE │───▶│ ANALYZE  │───▶│ IMPROVE  │ │
-    │  │  (Task)  │    │ (Results)│    │ (Self)   │ │
-    │  └──────────┘    └──────────┘    └────┬─────┘ │
-    │       ▲                               │       │
-    │       └───────────────────────────────┘       │
-    │                                                 │
-    └─────────────────────────────────────────────────┘
+                <pre class="mermaid">
+graph TD
+    E[Execute Task] --> A[Analyze Results]
+    A --> I[Improve Self]
+    I --> E
+                </pre>
             </div>
 
             <p>Based on SICA and Self-Harness papers. The agent executes tasks, analyzes its performance, and improves itself. This creates a recursive improvement loop.</p>
@@ -231,29 +205,14 @@
             <h3>6. Spec-Driven Pattern <span class="tag purple">Formal</span></h3>
             
             <div class="diagram">
-    ┌──────────────┐
-    │  SPEC DOC    │ (Requirements)
-    └──────┬───────┘
-           │
-           ▼
-    ┌──────────────┐
-    │  PLANNER     │ (Task breakdown)
-    └──────┬───────┘
-           │
-           ▼
-    ┌──────────────┐
-    │  IMPLEMENTER │ (Code generation)
-    └──────┬───────┘
-           │
-           ▼
-    ┌──────────────┐
-    │  VERIFIER    │ (Spec compliance)
-    └──────┬───────┘
-           │
-    ┌──────┴──────┐
-    │             │
-    ▼             ▼
-  PASS         FAIL → Re-implement
+                <pre class="mermaid">
+graph TD
+    S[Spec Doc Requirements] --> P[Planner Task Breakdown]
+    P --> I[Implementer Code Generation]
+    I --> V[Verifier Spec Compliance]
+    V -->|Pass| PASS[Done]
+    V -->|Fail| I
+                </pre>
             </div>
 
             <p>Tasks are driven by formal specifications. The system generates code that must satisfy the spec, then verifies compliance. This is the most rigorous approach.</p>
