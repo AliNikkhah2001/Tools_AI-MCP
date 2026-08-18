@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cc-sdd - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .status { background: #2ea04333; border-left: 4px solid #3fb950; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .todo { background: #d2992233; border-left: 4px solid #e3b341; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../summary.html" class="back">&larr; Back to Summary</a>
+        <h1>cc-sdd (Spec-Driven Development) <span class="tag">Spec-Driven</span></h1>
+        <div class="meta">
+            <strong>Repo:</strong> <a href="https://github.com/gotalab/cc-sdd" style="color: #58a6ff;">github.com/gotalab/cc-sdd</a> |
+            <strong>License:</strong> MIT
+        </div>
+
+        <div class="section">
+            <h3>Overview</h3>
+            <p>cc-sdd brings structured Spec-Driven Development to AI coding agents. It turns approved specs into long-running autonomous implementation with per-task independent review, TDD, and auto-debug. Works across 8 AI coding agents with the same 17-skill set.</p>
+            <p><strong>"Turn approved specs into long-running autonomous implementation"</strong></p>
+        </div>
+
+        <div class="section">
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>17 Agent Skills:</strong> Discovery, requirements, design, tasks, autonomous implementation</li>
+                <li><strong>8 AI Coding Agents:</strong> Claude Code, Codex, Cursor, Copilot, Windsurf, OpenCode, Gemini CLI, Antigravity</li>
+                <li><strong>13 Languages:</strong> Multi-language support</li>
+                <li><strong>Per-Task Subagent Spawn:</strong> Fresh implementer for each task</li>
+                <li><strong>Independent Review:</strong> Reviewer subagent for each task</li>
+                <li><strong>Auto-Debug:</strong> Root-cause investigation on failure</li>
+                <li><strong>TDD:</strong> RED → GREEN behind feature flags</li>
+                <li><strong>Boundary-First Spec Discipline:</strong> File Structure Plan drives task boundaries</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Workflow</h3>
+            <img src="../diagrams/cc-sdd_diagram_1.svg" alt="Workflow" style="max-width: 100%;">
+        </div>
+
+        <div class="section">
+            <h3>Skills Included</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #161b22;">
+                        <th style="border: 1px solid #30363d; padding: 10px;">Skill</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-discovery</code></td><td style="border: 1px solid #30363d; padding: 10px;">Route new work, write brief.md</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-spec-init</code></td><td style="border: 1px solid #30363d; padding: 10px;">Initialize a new spec</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-spec-requirements</code></td><td style="border: 1px solid #30363d; padding: 10px;">Write EARS-format requirements</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-spec-design</code></td><td style="border: 1px solid #30363d; padding: 10px;">Architecture with Mermaid diagrams</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-spec-tasks</code></td><td style="border: 1px solid #30363d; padding: 10px;">Generate task checklist</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-impl</code></td><td style="border: 1px solid #30363d; padding: 10px;">Autonomous implementation</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-validate-gap</code></td><td style="border: 1px solid #30363d; padding: 10px;">Gap analysis for existing codebase</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-validate-design</code></td><td style="border: 1px solid #30363d; padding: 10px;">Design review</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-validate-impl</code></td><td style="border: 1px solid #30363d; padding: 10px;">Implementation validation</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-spec-status</code></td><td style="border: 1px solid #30363d; padding: 10px;">Check progress</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-spec-batch</code></td><td style="border: 1px solid #30363d; padding: 10px;">Multi-spec initiatives</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>/kiro-steering</code></td><td style="border: 1px solid #30363d; padding: 10px;">Project-wide rules</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Installation</h3>
+            <pre><code>cd your-project
+npx cc-sdd@latest</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Usage</h3>
+            <pre><code># Start discovery
+/kiro-discovery Photo albums with upload, tagging, and sharing
+
+# Create spec
+/kiro-spec-init photo-albums
+
+# Write requirements
+/kiro-spec-requirements photo-albums
+
+# Design architecture
+/kiro-spec-design photo-albums
+
+# Generate tasks
+/kiro-spec-tasks photo-albums
+
+# Implement autonomously
+/kiro-impl photo-albums</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Relevance to Our Project</h3>
+            <p><strong>Very high relevance</strong> — Gold standard for spec-driven autonomous implementation.</p>
+            <ul>
+                <li>Spec as contract between system parts</li>
+                <li>Per-task subagent with fresh context</li>
+                <li>Independent review for quality</li>
+                <li>Auto-debug on failure</li>
+                <li>Works with OpenCode</li>
+            </ul>
+        </div>
+
+        <div class="status">
+            <strong>Status:</strong> Cloned at <code>cloned-repos/cc-sdd/</code>
+        </div>
+
+        <div class="todo">
+            <strong>Next Steps:</strong>
+            <ul>
+                <li>Run <code>npm install</code> and <code>npx cc-sdd@latest --opencode-skills</code></li>
+                <li>Test spec-driven workflow</li>
+                <li>Extract skill patterns</li>
+                <li>Integrate with our OpenCode config</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

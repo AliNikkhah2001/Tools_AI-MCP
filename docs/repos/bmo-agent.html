@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bmo-agent - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .status { background: #2ea04333; border-left: 4px solid #3fb950; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .todo { background: #d2992233; border-left: 4px solid #e3b341; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../summary.html" class="back">&larr; Back to Summary</a>
+        <h1>bmo-agent <span class="tag green">Self-Improving Agent</span></h1>
+        <div class="meta">
+            <strong>Repo:</strong> <a href="https://github.com/joelhans/bmo-agent" style="color: #58a6ff;">github.com/joelhans/bmo-agent</a> |
+            <strong>Stars:</strong> 31 | <strong>License:</strong> MIT | <strong>Runtime:</strong> Bun
+        </div>
+
+        <div class="section">
+            <h3>Overview</h3>
+            <p>bmo is a self-improving AI coding agent that runs in your terminal. It uses LLM-powered tool execution to complete tasks, and autonomously builds new tools and skills when it encounters limitations.</p>
+        </div>
+
+        <div class="section">
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Self-Improvement Loop:</strong> Agent builds new tools and skills autonomously</li>
+                <li><strong>Multi-Provider LLM Routing:</strong> OpenAI, Anthropic, and more</li>
+                <li><strong>Sandboxed Tool Execution:</strong> Dynamic tools run in isolated subprocesses</li>
+                <li><strong>Session Persistence:</strong> Full conversation history saved and resumable</li>
+                <li><strong>Cost Tracking:</strong> Token usage and cost monitoring per session</li>
+                <li><strong>Model Tiering:</strong> Automatic escalation between coding and reasoning models</li>
+                <li><strong>Reflection System:</strong> Agent reflects on failures and improves</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Architecture</h3>
+            <img src="../diagrams/bmo-agent_diagram_1.svg" alt="Architecture" style="max-width: 100%;">
+        </div>
+
+        <div class="section">
+            <h3>How Self-Improvement Works</h3>
+            <ol>
+                <li><strong>Task Execution:</strong> Agent attempts a task with tools</li>
+                <li><strong>Reflection:</strong> On failure, agent reflects on what went wrong</li>
+                <li><strong>Tool Generation:</strong> Agent generates new tools to handle similar tasks</li>
+                <li><strong>Skill Learning:</strong> Agent creates reusable skills from experience</li>
+                <li><strong>Maintenance:</strong> Periodic maintenance pass optimizes tools and skills</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Directory Structure</h3>
+            <pre><code>src/
+├── main.ts           # Entry point
+├── tui.ts            # Terminal UI
+├── agent-loop.ts     # Streaming agent loop
+├── llm.ts            # Multi-provider LLM client
+├── tools.ts          # Tool registry
+├── tool-loader.ts    # Dynamic tool loading
+├── sandbox.ts        # Sandboxed execution
+├── skills.ts         # Skill system
+├── context.ts        # Context management
+├── tiering.ts        # Model tiering
+├── config.ts         # Configuration
+├── session.ts        # Session persistence
+└── prompt.ts         # System prompt assembly</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Installation</h3>
+            <pre><code>git clone https://github.com/joelhans/bmo-agent.git
+cd bmo-agent
+bun install
+bun run build
+bun run install</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Usage</h3>
+            <pre><code># Run bmo
+bmo
+
+# Add API key
+bmo key add openai <your-key>
+
+# Resume a session
+bmo --session <id>
+
+# Force maintenance
+bmo --maintain</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Relevance to Our Project</h3>
+            <p><strong>Very high relevance</strong> — This is exactly what we want: a self-improving coding agent.</p>
+            <ul>
+                <li>Self-improvement loop architecture</li>
+                <li>Tool generation from experience</li>
+                <li>Reflection system for learning</li>
+                <li>Model tiering for cost optimization</li>
+            </ul>
+        </div>
+
+        <div class="status">
+            <strong>Status:</strong> Cloned at <code>cloned-repos/bmo-agent/</code>
+        </div>
+
+        <div class="todo">
+            <strong>Next Steps:</strong>
+            <ul>
+                <li>Install Bun and run <code>bun install</code></li>
+                <li>Test self-improvement loop</li>
+                <li>Extract reflection/skill patterns</li>
+                <li>Integrate with our OpenCode agents</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

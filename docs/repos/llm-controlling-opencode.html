@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Controlling OpenCode - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+        .tag.yellow { background: #d29922aa; color: #e3b341; }
+        .tag.red { background: #da3633aa; color: #f85149; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../summary.html" class="back">&larr; Back to Summary</a>
+        <h1>Using an LLM to Control OpenCode</h1>
+
+        <div class="section">
+            <h3>The Vision</h3>
+            <img src="../diagrams/llm-controlling-opencode_diagram_1.svg" alt="Vision" style="max-width: 100%;">
+            <p>An LLM orchestrates OpenCode to:</p>
+            <ol>
+                <li>Plan tasks</li>
+                <li>Delegate to OpenCode</li>
+                <li>Monitor progress</li>
+                <li>Review results</li>
+                <li>Iterate until done</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Method Comparison</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #161b22;">
+                        <th style="border: 1px solid #30363d; padding: 10px;">Method</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">External Agent</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Complexity</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Hermes Agent + OpenCode Skill</strong></td><td style="border: 1px solid #30363d; padding: 10px;">Hermes</td><td style="border: 1px solid #30363d; padding: 10px;"><span class="tag yellow">Medium</span></td><td style="border: 1px solid #30363d; padding: 10px;">Full orchestration</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>HermesOC</strong></td><td style="border: 1px solid #30363d; padding: 10px;">Hermes</td><td style="border: 1px solid #30363d; padding: 10px;"><span class="tag green">Low</span></td><td style="border: 1px solid #30363d; padding: 10px;">Embedded coding</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Autonomous Dev Team</strong></td><td style="border: 1px solid #30363d; padding: 10px;">Any CLI</td><td style="border: 1px solid #30363d; padding: 10px;"><span class="tag red">High</span></td><td style="border: 1px solid #30363d; padding: 10px;">Issue→PR automation</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Claude Code Bridge</strong></td><td style="border: 1px solid #30363d; padding: 10px;">Claude Code</td><td style="border: 1px solid #30363d; padding: 10px;"><span class="tag yellow">Medium</span></td><td style="border: 1px solid #30363d; padding: 10px;">Benchmarking</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>OpenCode CLI Direct</strong></td><td style="border: 1px solid #30363d; padding: 10px;">None</td><td style="border: 1px solid #30363d; padding: 10px;"><span class="tag green">Low</span></td><td style="border: 1px solid #30363d; padding: 10px;">Simple automation</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Method 1: Hermes Agent + OpenCode Skill (Recommended)</h3>
+            <p>Hermes Agent by Nous Research has a built-in <strong>OpenCode skill</strong> that teaches it to control OpenCode via CLI commands.</p>
+            <pre><code># Install Hermes Agent
+pip install hermes-agent
+
+# Install OpenCode
+npm i -g opencode-ai@latest
+
+# Run Hermes with OpenCode skill
+hermes chat --skill opencode
+
+# Give it a task
+> Implement a REST API with authentication and tests</code></pre>
+            <p><strong>One-shot task:</strong> <code>terminal(command="opencode run 'Add retry logic to API calls'")</code></p>
+            <p><strong>Interactive session:</strong> Use background PTY sessions for continuous operation.</p>
+        </div>
+
+        <div class="section">
+            <h3>Method 2: HermesOC (Embedded Plugin)</h3>
+            <p>HermesOC embeds an OpenCode-style coding agent directly into Hermes. No external OpenCode CLI required.</p>
+            <pre><code>git clone https://github.com/evangit2/hermes-opencode.git
+cd hermes-opencode
+pip install -e .</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Method 3: Autonomous Dev Team</h3>
+            <p>Fully automated pipeline that turns issues into merged PRs with zero human intervention.</p>
+            <pre><code>npx skills add zxkane/autonomous-dev-team</code></pre>
+            <p>Supports: Claude Code, Codex CLI, Kiro CLI, <strong>OpenCode</strong>, Cursor Agent, Antigravity CLI</p>
+        </div>
+
+        <div class="section">
+            <h3>Method 4: Claude Code → OpenCode Bridge</h3>
+            <p>Running OpenCode inside an autonomous Claude Code AI Agent.</p>
+            <pre><code>claude run opencode run 'Generate a retro arcade game in HTML' --model opencode/big-pickle</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Method 5: OpenCode CLI Direct Control</h3>
+            <p>Using OpenCode's own CLI for automation without external orchestration.</p>
+            <pre><code># One-shot
+opencode run 'Add retry logic to API calls'
+
+# With file context
+opencode run 'Review this config' -f config.yaml
+
+# With thinking
+opencode run 'Debug why tests fail' --thinking
+
+# Force model
+opencode run 'Refactor auth' --model openrouter/anthropic/claude-sonnet-4</code></pre>
+            <p><strong>Programmatic control via Python:</strong> Use subprocess to run OpenCode and parse NDJSON output.</p>
+        </div>
+
+        <div class="section">
+            <h3>Recommended Architecture</h3>
+            <img src="../diagrams/llm-controlling-opencode_diagram_2.svg" alt="Architecture" style="max-width: 100%;">
+        </div>
+
+        <div class="section">
+            <h3>Key Takeaways</h3>
+            <ol>
+                <li><strong>Hermes Agent is the best orchestrator</strong> — Built-in OpenCode skill</li>
+                <li><strong>OpenCode CLI is the execution engine</strong> — Does the actual coding</li>
+                <li><strong>The feedback loop is critical</strong> — Orchestrator monitors and reviews</li>
+                <li><strong>Self-improvement comes from analysis</strong> — Analyze results to improve prompts</li>
+                <li><strong>Start simple, iterate</strong> — Begin with one-shot tasks, then build loops</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Quick Start</h3>
+            <pre><code># 1. Install Hermes Agent
+pip install hermes-agent
+
+# 2. Install OpenCode
+npm i -g opencode-ai@latest
+
+# 3. Configure OpenCode
+opencode auth login
+
+# 4. Run Hermes with OpenCode skill
+hermes chat --skill opencode
+
+# 5. Give it a task
+> Implement a REST API with authentication and tests</code></pre>
+        </div>
+    </div>
+</body>
+</html>

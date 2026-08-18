@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>opencode-orchestrator - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .status { background: #2ea04333; border-left: 4px solid #3fb950; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .todo { background: #d2992233; border-left: 4px solid #e3b341; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../summary.html" class="back">&larr; Back to Summary</a>
+        <h1>opencode-orchestrator <span class="tag green">Enterprise Orchestration</span></h1>
+        <div class="meta">
+            <strong>Repo:</strong> <a href="https://github.com/cloudpftc/opencode-orchestrator" style="color: #58a6ff;">github.com/cloudpftc/opencode-orchestrator</a> |
+            <strong>Stars:</strong> 2 | <strong>Commits:</strong> 5,973 | <strong>Language:</strong> TypeScript
+        </div>
+
+        <div class="section">
+            <h3>Overview</h3>
+            <p>OpenCode Orchestrator (formerly Claude Flow/Ruflo) is an enterprise-grade AI agent orchestration platform for OpenCode. It deploys 60+ specialized agents in coordinated swarms with self-learning capabilities, fault-tolerant consensus, and enterprise-grade security.</p>
+        </div>
+
+        <div class="section">
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>60+ Specialized Agents:</strong> Coder, tester, reviewer, architect, security, and more</li>
+                <li><strong>Swarm Coordination:</strong> Mesh, hierarchical, ring, and star topologies</li>
+                <li><strong>Consensus Protocols:</strong> Raft, BFT, Gossip, CRDT for fault tolerance</li>
+                <li><strong>Self-Learning Loop:</strong> Agents improve from their own experience</li>
+                <li><strong>Q-Learning Router:</strong> Intelligent task routing to optimal agents</li>
+                <li><strong>RuVector Intelligence:</strong> SONA self-optimization, EWC++ no-forgetting, Flash Attention</li>
+                <li><strong>Memory System:</strong> AgentDB with HNSW (150x-12,500x faster retrieval)</li>
+                <li><strong>Multi-Provider Support:</strong> Claude, GPT, Gemini, Ollama</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Architecture</h3>
+            <img src="../diagrams/opencode-orchestrator_diagram_1.svg" alt="Architecture" style="max-width: 100%;">
+        </div>
+
+        <div class="section">
+            <h3>Directory Structure</h3>
+            <pre><code>opencode-orchestrator/
+├── .agents/           # Agent definitions
+├── .opencode/         # OpenCode configuration
+├── agents/            # Agent implementations
+├── bin/               # CLI binaries
+├── plugin/            # Plugin system
+├── scripts/           # Automation scripts
+├── tests/             # Test suite
+├── v2/, v3/           # Version-specific code
+├── opencode.json      # OpenCode config
+└── package.json       # Node.js dependencies</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Installation</h3>
+            <pre><code>npm install -g cloudpftc-opencode-orchestrator</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Usage</h3>
+            <pre><code># Start orchestrator
+opencode-orchestrator start
+
+# Deploy a swarm
+opencode-orchestrator swarm deploy --topology mesh --agents 10
+
+# Monitor agent activity
+opencode-orchestrator status</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Relevance to Our Project</h3>
+            <p><strong>High relevance</strong> — This is the most comprehensive orchestration platform for OpenCode.</p>
+            <ul>
+                <li>Swarm coordination patterns for multi-agent systems</li>
+                <li>Self-learning loop architecture</li>
+                <li>Consensus protocols for fault tolerance</li>
+                <li>Memory system with fast retrieval</li>
+            </ul>
+        </div>
+
+        <div class="status">
+            <strong>Status:</strong> Cloned at <code>cloned-repos/opencode-orchestrator/</code> (9,720 files)
+        </div>
+
+        <div class="todo">
+            <strong>Next Steps:</strong>
+            <ul>
+                <li>Run <code>npm install</code> and <code>npm run build</code></li>
+                <li>Test swarm deployment</li>
+                <li>Integrate with our OpenCode config</li>
+                <li>Extract relevant agent patterns</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

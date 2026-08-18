@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>opencode-pipeline-template - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .status { background: #2ea04333; border-left: 4px solid #3fb950; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .todo { background: #d2992233; border-left: 4px solid #e3b341; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../summary.html" class="back">&larr; Back to Summary</a>
+        <h1>opencode-pipeline-template <span class="tag">Pipeline Patterns</span></h1>
+        <div class="meta">
+            <strong>Repo:</strong> <a href="https://github.com/jiyuan0125/opencode-pipeline-template" style="color: #58a6ff;">github.com/jiyuan0125/opencode-pipeline-template</a>
+        </div>
+
+        <div class="section">
+            <h3>Overview</h3>
+            <p>Build production-grade LLM code generation pipelines using OpenCode's native skill + subagent + command system. No custom agent framework required — just OpenCode and your deterministic scripts.</p>
+        </div>
+
+        <div class="section">
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Three-Layer Separation:</strong> Skill (methodology), Subagent (sandbox), Command (trigger)</li>
+                <li><strong>11 Methodology Templates:</strong> Pipeline master, test fix, fusion, build, behavior fix, and more</li>
+                <li><strong>10 Sandboxed Agents:</strong> Each with path-level permission rules</li>
+                <li><strong>3 User Commands:</strong> <code>/fix-tests</code>, <code>/fuse-module</code>, <code>/build-module</code></li>
+                <li><strong>Deterministic Scripts:</strong> Bash scripts for AST, validation, CI pipeline logic</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Architecture</h3>
+            <img src="../diagrams/opencode-pipeline-template_diagram_1.svg" alt="Architecture" style="max-width: 100%;">
+        </div>
+
+        <div class="section">
+            <h3>Three-Layer Separation</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #161b22;">
+                        <th style="border: 1px solid #30363d; padding: 10px;">Layer</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Location</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Skill</strong></td><td style="border: 1px solid #30363d; padding: 10px;"><code>.opencode/skills/<name>/SKILL.md</code></td><td style="border: 1px solid #30363d; padding: 10px;">Methodology (what to do, how to diagnose)</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Subagent</strong></td><td style="border: 1px solid #30363d; padding: 10px;"><code>.opencode/agent/<name>.md</code></td><td style="border: 1px solid #30363d; padding: 10px;">Permission sandbox + model config</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Command</strong></td><td style="border: 1px solid #30363d; padding: 10px;"><code>.opencode/command/<name>.md</code></td><td style="border: 1px solid #30363d; padding: 10px;">User-facing trigger</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Skills Included</h3>
+            <ul>
+                <li><code>pipeline-master</code> — Orchestrator: chains stages in order</li>
+                <li><code>pipeline-test-fix</code> — Diagnose pytest failures, fix code, verify</li>
+                <li><code>pipeline-fusion</code> — Read reference code, generate business logic</li>
+                <li><code>pipeline-build</code> — Enhance CRUD skeleton with validation guards</li>
+                <li><code>pipeline-behavior-fix</code> — Compare against reference, patch missing logic</li>
+                <li><code>pipeline-fe-infra</code> — Generate Vue3+Element-Plus admin scaffolding</li>
+                <li><code>pipeline-fe-page</code> — Fill empty Vue templates with data tables</li>
+                <li><code>pipeline-fe-ir</code> — Compile business rules into structured test IR</li>
+                <li><code>pipeline-rule-extract</code> — Extract common business rules</li>
+                <li><code>pipeline-rule-convert</code> — Add testable acceptance criteria</li>
+                <li><code>pipeline-rule-review</code> — Check rules for duplicates, contradictions</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Usage</h3>
+            <pre><code># Step 1: Generate CRUD skeleton (deterministic)
+python scaffold.py user
+
+# Step 2: Run CRUD tests (should pass)
+python -m pytest tests/test_user.py::TestCRUD -q
+
+# Step 3: Open opencode, then type:
+#   /fuse-module user</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Relevance to Our Project</h3>
+            <p><strong>Very high relevance</strong> — Shows how to build pipelines with OpenCode's native primitives.</p>
+            <ul>
+                <li>Three-layer separation pattern</li>
+                <li>Permission sandboxing for subagents</li>
+                <li>Deterministic + LLM hybrid approach</li>
+                <li>Production-ready pipeline patterns</li>
+            </ul>
+        </div>
+
+        <div class="status">
+            <strong>Status:</strong> Cloned at <code>cloned-repos/opencode-pipeline-template/</code>
+        </div>
+
+        <div class="todo">
+            <strong>Next Steps:</strong>
+            <ul>
+                <li>Run examples and test pipeline</li>
+                <li>Extract skill/subagent patterns</li>
+                <li>Adapt for our OpenCode config</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

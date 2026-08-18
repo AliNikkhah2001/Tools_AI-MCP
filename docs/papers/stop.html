@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOP Paper - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .result { background: #2ea04333; border-left: 4px solid #3fb950; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .result strong { color: #3fb950; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../papers.html" class="back">&larr; Back to Papers</a>
+        <h1>STOP — Self-Taught Optimizer for Programming <span class="tag green">2024</span></h1>
+        <div class="meta">
+            <strong>ArXiv:</strong> <a href="https://arxiv.org/abs/2310.02304" style="color: #58a6ff;">arxiv.org/abs/2310.02304</a> |
+            <strong>PDF:</strong> <a href="https://arxiv.org/pdf/2310.02304" style="color: #58a6ff;">arxiv.org/pdf/2310.02304</a> |
+            <strong>Authors:</strong> Zelikman et al.
+        </div>
+
+        <div class="section">
+            <h3>Core Idea</h3>
+            <p>STOP addresses the <strong>safety concerns</strong> of recursive self-improvement. It proves mathematically that a self-improving code generator can be constrained to only produce safe, correct code. The key insight is that you can prove safety properties hold across self-improvement iterations.</p>
+        </div>
+
+        <div class="section">
+            <h3>How It Works</h3>
+            <ol>
+                <li><strong>Seed Program:</strong> Start with a verified safe program</li>
+                <li><strong>Safe Modification Rules:</strong> Define rules that preserve safety properties</li>
+                <li><strong>Self-Improvement:</strong> The program modifies itself following safe rules</li>
+                <li><strong>Formal Verification:</strong> Prove that safety properties hold after each modification</li>
+                <li><strong>Recursive Application:</strong> The improved program can improve itself further</li>
+            </ol>
+        </div>
+
+        <div class="result">
+            <strong>Results:</strong> Mathematically proven that self-improvement preserves safety. Demonstrated on code generation tasks where the system improves its own performance while maintaining correctness guarantees.
+        </div>
+
+        <div class="section">
+            <h3>Key Innovation</h3>
+            <p>The paper provides <strong>formal safety guarantees</strong> for recursive self-improvement. This addresses the main concern about autonomous self-improving systems — that they might become unsafe.</p>
+        </div>
+
+        <div class="section">
+            <h3>Relevance to Our Project</h3>
+            <p>Crucial for our permission auto-accept system:</p>
+            <ul>
+                <li>Define safety properties for our agents</li>
+                <li>Prove that self-improvement preserves these properties</li>
+                <li>Automatically verify safety after each modification</li>
+                <li>Build trust in the autonomous system</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Safety Property Example</h3>
+            <pre><code>// Safety property example
+property SafeCodeGeneration {
+    ensures: result.isCorrect()
+    ensures: result.noSideEffects()
+    ensures: result.terminates()
+}</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Local Copy</h3>
+            <p>README and notes at <code>cloned-repos/papers/stop/README.md</code></p>
+        </div>
+    </div>
+</body>
+</html>

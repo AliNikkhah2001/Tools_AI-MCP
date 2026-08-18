@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>opencode-agents - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .status { background: #2ea04333; border-left: 4px solid #3fb950; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .todo { background: #d2992233; border-left: 4px solid #e3b341; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../summary.html" class="back">&larr; Back to Summary</a>
+        <h1>opencode-agents Template <span class="tag">Agent Structuring</span></h1>
+        <div class="meta">
+            <strong>Repo:</strong> <a href="https://github.com/rmkohlman/opencode-agents" style="color: #58a6ff;">github.com/rmkohlman/opencode-agents</a> |
+            <strong>Stars:</strong> 3
+        </div>
+
+        <div class="section">
+            <h3>Overview</h3>
+            <p>A template repo and reference guide for building AI agent systems with OpenCode. Learn how to structure multi-agent teams that plan, implement, test, document, and ship software — entirely through GitHub Issues.</p>
+        </div>
+
+        <div class="section">
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Agent Categories:</strong> Domain, Advisory, Cross-cutting</li>
+                <li><strong>Ticket-Driven Workflow:</strong> No Ticket, No Work</li>
+                <li><strong>GitHub Issues as Source of Truth:</strong> All communication through issues</li>
+                <li><strong>Primary Orchestrator:</strong> Engineering Lead delegates everything</li>
+                <li><strong>Persistent Agents:</strong> Long-running collaborators with defined responsibilities</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Architecture</h3>
+            <img src="../diagrams/opencode-agents_diagram_1.svg" alt="Architecture" style="max-width: 100%;">
+        </div>
+
+        <div class="section">
+            <h3>Agent Types</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #161b22;">
+                        <th style="border: 1px solid #30363d; padding: 10px;">Category</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Description</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Domain</strong></td><td style="border: 1px solid #30363d; padding: 10px;">Own specific directories. Full read/write/bash access.</td><td style="border: 1px solid #30363d; padding: 10px;"><code>@vault-core</code>, <code>@tui</code></td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Advisory</strong></td><td style="border: 1px solid #30363d; padding: 10px;">Read-only reviewers. Never modify code.</td><td style="border: 1px solid #30363d; padding: 10px;"><code>@security</code>, <code>@architecture</code></td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Cross-cutting</strong></td><td style="border: 1px solid #30363d; padding: 10px;">Handle concerns that span all domains.</td><td style="border: 1px solid #30363d; padding: 10px;"><code>@test</code>, <code>@document</code>, <code>@release</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Directory Structure</h3>
+            <pre><code>your-repo/
+├── CLAUDE.md                    # Project context for every agent
+├── .opencode/
+│   ├── agents/                  # Agent definitions
+│   │   ├── engineering-lead.md  # Primary orchestrator
+│   │   ├── vault-core.md        # Domain agent
+│   │   ├── security.md          # Advisory agent
+│   │   ├── test.md              # Cross-cutting agent
+│   │   ├── document.md          # Cross-cutting agent
+│   │   └── release.md           # Cross-cutting agent
+│   └── commands/                # Custom slash commands</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Installation</h3>
+            <pre><code>git clone https://github.com/rmkohlman/opencode-agents.git
+cd opencode-agents
+# Copy .opencode/ to your project</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Relevance to Our Project</h3>
+            <p><strong>High relevance</strong> — Shows how to structure multi-agent teams with OpenCode.</p>
+            <ul>
+                <li>Agent category taxonomy (Domain, Advisory, Cross-cutting)</li>
+                <li>Ticket-driven workflow</li>
+                <li>GitHub Issues as communication channel</li>
+                <li>Primary orchestrator pattern</li>
+            </ul>
+        </div>
+
+        <div class="status">
+            <strong>Status:</strong> Cloned at <code>cloned-repos/opencode-agents/</code>
+        </div>
+
+        <div class="todo">
+            <strong>Next Steps:</strong>
+            <ul>
+                <li>Copy .opencode/ to our project</li>
+                <li>Configure agents for our use case</li>
+                <li>Test ticket-driven workflow</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

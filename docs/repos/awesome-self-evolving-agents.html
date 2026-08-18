@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>awesome-self-evolving-agents - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.yellow { background: #d29922aa; color: #e3b341; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .status { background: #2ea04333; border-left: 4px solid #3fb950; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .todo { background: #d2992233; border-left: 4px solid #e3b341; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../summary.html" class="back">&larr; Back to Summary</a>
+        <h1>awesome-self-evolving-agents <span class="tag yellow">Research Compilation</span></h1>
+        <div class="meta">
+            <strong>Repo:</strong> <a href="https://github.com/sukoji/awesome-self-evolving-agents" style="color: #58a6ff;">github.com/sukoji/awesome-self-evolving-agents</a> |
+            <strong>Stars:</strong> 2 | <strong>License:</strong> CC0-1.0
+        </div>
+
+        <div class="section">
+            <h3>Overview</h3>
+            <p>A curated, deliberately opinionated map of <strong>self-evolving / self-improving LLM agents</strong>: systems that keep changing themselves after deployment — refining their prompts, memory, tools, and even weights from their own experience.</p>
+            <p><strong>90+ papers</strong> across <strong>13 topics</strong> · <strong>15+ community projects</strong> · <strong>2 runnable demos</strong></p>
+        </div>
+
+        <div class="section">
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>90+ Papers:</strong> Comprehensive coverage of self-evolving agents</li>
+                <li><strong>13 Topics:</strong> Taxonomy of the field</li>
+                <li><strong>Runnable Demos:</strong> <code>code/safety_gated_evolution.py</code></li>
+                <li><strong>Safety Section:</strong> Honest coverage of misevolution and failures</li>
+                <li><strong>Reading Path:</strong> Structured way to learn the field</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>The Four Evolution Pathways</h3>
+            <img src="../diagrams/awesome-self-evolving-agents_diagram_1.svg" alt="Evolution Pathways" style="max-width: 100%;">
+            <ol>
+                <li><strong>Prompt Evolution:</strong> Agents improve their own prompts</li>
+                <li><strong>Tool Evolution:</strong> Agents create and refine tools</li>
+                <li><strong>Memory Evolution:</strong> Agents optimize their memory systems</li>
+                <li><strong>Weight Evolution:</strong> Agents fine-tune their own weights</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Key Papers</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #161b22;">
+                        <th style="border: 1px solid #30363d; padding: 10px;">Paper</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Year</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Key Contribution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>SICA</strong></td><td style="border: 1px solid #30363d; padding: 10px;">2025</td><td style="border: 1px solid #30363d; padding: 10px;">Self-improving code agents (17-53% gains)</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Self-Harness</strong></td><td style="border: 1px solid #30363d; padding: 10px;">2026</td><td style="border: 1px solid #30363d; padding: 10px;">Harnesses that improve themselves</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>AlphaEvolve</strong></td><td style="border: 1px solid #30363d; padding: 10px;">2025</td><td style="border: 1px solid #30363d; padding: 10px;">Evolutionary coding for scientific discovery</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>STOP</strong></td><td style="border: 1px solid #30363d; padding: 10px;">2024</td><td style="border: 1px solid #30363d; padding: 10px;">Safe recursive self-improvement</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>CER</strong></td><td style="border: 1px solid #30363d; padding: 10px;">2025</td><td style="border: 1px solid #30363d; padding: 10px;">Contextual experience replay</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Voyager</strong></td><td style="border: 1px solid #30363d; padding: 10px;">2024</td><td style="border: 1px solid #30363d; padding: 10px;">Lifelong skill-library growth</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>DSPy</strong></td><td style="border: 1px solid #30363d; padding: 10px;">2023</td><td style="border: 1px solid #30363d; padding: 10px;">Compiling self-improving pipelines</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>MemGPT</strong></td><td style="border: 1px solid #30363d; padding: 10px;">2023</td><td style="border: 1px solid #30363d; padding: 10px;">Tiered memory management</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Safety: Misevolution</h3>
+            <p>The canonical cautionary tale: a refund agent that learns from customer satisfaction. Approving a refund makes the customer happy, so the agent slowly learns "approving is good" — and starts approving things it should refuse. Task success stays high the whole time.</p>
+            <p><strong>Two root causes:</strong></p>
+            <ol>
+                <li><strong>Reward hacking:</strong> Agent finds shortcuts that satisfy metrics but not intent</li>
+                <li><strong>Distribution shift:</strong> Agent encounters situations outside training distribution</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Installation</h3>
+            <pre><code>git clone https://github.com/sukoji/awesome-self-evolving-agents.git
+cd awesome-self-evolving-agents</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Usage</h3>
+            <pre><code># Run the safety-gated evolution demo
+python code/safety_gated_evolution.py
+
+# Read the primer
+cat docs/primer.md</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Relevance to Our Project</h3>
+            <p><strong>Essential reference</strong> — Comprehensive map of the self-evolving agent field.</p>
+            <ul>
+                <li>Complete taxonomy of self-evolution approaches</li>
+                <li>Safety considerations (misevolution)</li>
+                <li>Runnable demos for learning</li>
+                <li>Reading path for structured learning</li>
+            </ul>
+        </div>
+
+        <div class="status">
+            <strong>Status:</strong> Cloned at <code>cloned-repos/awesome-self-evolving-agents/</code> | Papers in <code>cloned-repos/papers/</code>
+        </div>
+
+        <div class="todo">
+            <strong>Next Steps:</strong>
+            <ul>
+                <li>Run <code>python code/safety_gated_evolution.py</code></li>
+                <li>Read <code>docs/primer.md</code></li>
+                <li>Review all 90+ papers</li>
+                <li>Apply safety principles to our system</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Harness Paper - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.purple { background: #a371f733; color: #d2a8ff; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .result { background: #2ea04333; border-left: 4px solid #3fb950; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .result strong { color: #3fb950; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../papers.html" class="back">&larr; Back to Papers</a>
+        <h1>Self-Harness — Harnesses That Improve Themselves <span class="tag purple">2026</span></h1>
+        <div class="meta">
+            <strong>ArXiv:</strong> <a href="https://arxiv.org/abs/2606.09498" style="color: #58a6ff;">arxiv.org/abs/2606.09498</a> |
+            <strong>PDF:</strong> <a href="https://arxiv.org/pdf/2606.09498" style="color: #58a6ff;">arxiv.org/pdf/2606.09498</a>
+        </div>
+
+        <div class="section">
+            <h3>Core Idea</h3>
+            <p>Self-Harness goes beyond SICA by introducing <strong>harnesses that improve themselves</strong>. A "harness" is the infrastructure that controls and evaluates the agent — the prompts, evaluation criteria, and execution environment. The paper shows these harnesses can be optimized by the same LLM they control.</p>
+        </div>
+
+        <div class="section">
+            <h3>How It Works</h3>
+            <ol>
+                <li><strong>Initial Harness:</strong> Basic prompt templates and evaluation criteria</li>
+                <li><strong>Task Execution:</strong> Agent solves tasks using current harness</li>
+                <li><strong>Harness Evaluation:</strong> LLM evaluates the harness effectiveness</li>
+                <li><strong>Harness Modification:</strong> LLM modifies the harness based on evaluation</li>
+                <li><strong>Recursive Improvement:</strong> Modified harness is used for next iteration</li>
+            </ol>
+        </div>
+
+        <div class="result">
+            <strong>Results:</strong> 15-52% improvement on Terminal-Bench-2.0. The key finding is that the harness improvement is <strong>transferable</strong> — a harness improved on one task type works better on similar tasks.
+        </div>
+
+        <div class="section">
+            <h3>Key Innovation</h3>
+            <p>The paper introduces the concept of <strong>"meta-prompting"</strong> — the LLM writes prompts that control itself. This creates a bootstrap effect where the system improves its own control mechanisms.</p>
+        </div>
+
+        <div class="section">
+            <h3>Relevance to Our Project</h3>
+            <p>Directly applies to our multi-agent orchestration:</p>
+            <ul>
+                <li>The orchestrator can improve its own task routing logic</li>
+                <li>Agent prompts can be automatically optimized</li>
+                <li>Evaluation criteria can evolve based on results</li>
+                <li>The entire system becomes self-improving at the meta level</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>Local Copy</h3>
+            <p>README and notes at <code>cloned-repos/papers/self-harness/README.md</code></p>
+        </div>
+    </div>
+</body>
+</html>

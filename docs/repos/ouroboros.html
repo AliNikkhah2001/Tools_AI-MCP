@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ouroboros - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .meta { color: #8b949e; margin-bottom: 20px; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.purple { background: #a371f733; color: #d2a8ff; }
+        .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .section h3 { margin-top: 0; color: #58a6ff; }
+        pre { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; overflow-x: auto; margin: 15px 0; }
+        code { background: #161b22; padding: 2px 6px; border-radius: 4px; color: #f0883e; font-family: 'Consolas', monospace; }
+        ul, ol { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+        .status { background: #2ea04333; border-left: 4px solid #3fb950; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+        .todo { background: #d2992233; border-left: 4px solid #e3b341; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../summary.html" class="back">&larr; Back to Summary</a>
+        <h1>ouroboros <span class="tag purple">Agent OS</span></h1>
+        <div class="meta">
+            <strong>Repo:</strong> <a href="https://github.com/Q00/ouroboros" style="color: #58a6ff;">github.com/Q00/ouroboros</a> |
+            <strong>License:</strong> MIT
+        </div>
+
+        <div class="section">
+            <h3>Overview</h3>
+            <p>Ouroboros is an <strong>Agent OS</strong> for AI coding: a local-first runtime layer that turns non-deterministic agent work into a replayable, observable, policy-bound execution contract. It replaces ad-hoc prompting with a structured specification-first workflow.</p>
+            <p><em>"It gets smarter on its own. We just hold the line."</em></p>
+        </div>
+
+        <div class="section">
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Specification-First Workflow:</strong> Interview → Seed → Execute → Evaluate</li>
+                <li><strong>Socratic Clarity:</strong> Question until ambiguity ≤ 0.2</li>
+                <li><strong>Evolutionary Loops:</strong> Each evaluation cycle feeds back into better specs</li>
+                <li><strong>Multi-Runtime Support:</strong> Claude Code, Codex CLI, OpenCode, Hermes, Gemini, Kiro, Copilot</li>
+                <li><strong>MCP Integration:</strong> Model Context Protocol for tool access</li>
+                <li><strong>Replayable Execution:</strong> Every action becomes a contract</li>
+                <li><strong>Safety Boundaries:</strong> Policy-bound execution</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h3>The Ouroboros Stack</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #161b22;">
+                        <th style="border: 1px solid #30363d; padding: 10px;">Layer</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Repo</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Shell</strong> (terminal client)</td><td style="border: 1px solid #30363d; padding: 10px;"><code>Ouro-labs/ourocode</code></td><td style="border: 1px solid #30363d; padding: 10px;">Native terminal UI</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>Apps</strong> (domain workflows)</td><td style="border: 1px solid #30363d; padding: 10px;"><code>Ouro-labs/ouroboros-plugins</code></td><td style="border: 1px solid #30363d; padding: 10px;">UserLevel plugin contract</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><strong>OS</strong> (this repo)</td><td style="border: 1px solid #30363d; padding: 10px;"><code>Q00/ouroboros</code></td><td style="border: 1px solid #30363d; padding: 10px;">Agent OS core — Seed, Ledger, Runtime, MCP</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>How It Works</h3>
+            <img src="../diagrams/ouroboros_diagram_1.svg" alt="Workflow" style="max-width: 100%;">
+            <ol>
+                <li><strong>Interview:</strong> Socratic questioning to clarify requirements</li>
+                <li><strong>Seed:</strong> Generate specification from clarified requirements</li>
+                <li><strong>Execute:</strong> Run code generation with policy boundaries</li>
+                <li><strong>Evaluate:</strong> Grade results and feed back into next iteration</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>Installation</h3>
+            <pre><code>curl -fsSL https://raw.githubusercontent.com/Q00/ouroboros/main/scripts/install.sh | bash</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Usage</h3>
+            <pre><code># Setup
+ooo setup
+
+# Start auto mode
+ooo auto <task>
+
+# Interview mode
+ooo interview <idea>
+
+# Seed architecture
+ooo seed
+
+# Execute
+ooo run
+
+# Evaluate
+ooo evaluate
+
+# Evolve
+ooo evolve</code></pre>
+        </div>
+
+        <div class="section">
+            <h3>Agents</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #161b22;">
+                        <th style="border: 1px solid #30363d; padding: 10px;">Agent</th>
+                        <th style="border: 1px solid #30363d; padding: 10px;">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>socratic-interviewer</code></td><td style="border: 1px solid #30363d; padding: 10px;">Clarifies requirements through questioning</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>ontologist</code></td><td style="border: 1px solid #30363d; padding: 10px;">Defines precise specifications</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>seed-architect</code></td><td style="border: 1px solid #30363d; padding: 10px;">Generates architecture from specs</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>evaluator</code></td><td style="border: 1px solid #30363d; padding: 10px;">Grades execution results</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>qa-judge</code></td><td style="border: 1px solid #30363d; padding: 10px;">Quality assurance</td></tr>
+                    <tr><td style="border: 1px solid #30363d; padding: 10px;"><code>contrarian</code></td><td style="border: 1px solid #30363d; padding: 10px;">Challenges assumptions</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Relevance to Our Project</h3>
+            <p><strong>Very high relevance</strong> — Most sophisticated agent OS for coding.</p>
+            <ul>
+                <li>Specification-first workflow</li>
+                <li>Evolutionary improvement loops</li>
+                <li>Multi-runtime support</li>
+                <li>Safety and policy boundaries</li>
+            </ul>
+        </div>
+
+        <div class="status">
+            <strong>Status:</strong> Cloned at <code>cloned-repos/ouroboros/</code>
+        </div>
+
+        <div class="todo">
+            <strong>Next Steps:</strong>
+            <ul>
+                <li>Run <code>pip install -e .</code> and <code>ooo setup</code></li>
+                <li>Test evolutionary loop</li>
+                <li>Extract specification patterns</li>
+                <li>Integrate with our system</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

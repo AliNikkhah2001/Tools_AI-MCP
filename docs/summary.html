@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary & Comparison - OpenCode Multi-Agent Orchestration</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 30px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 30px 0 15px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
+        th, td { border: 1px solid #30363d; padding: 10px; text-align: left; }
+        th { background: #161b22; color: #58a6ff; font-weight: 600; white-space: nowrap; }
+        tr:hover { background: #161b22; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 2px; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+        .tag.yellow { background: #d29922aa; color: #e3b341; }
+        .tag.red { background: #da3633aa; color: #f85149; }
+        .tag.purple { background: #a371f733; color: #d2a8ff; }
+        .highlight { background: #1f6feb22; border-left: 4px solid #1f6feb; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .highlight strong { color: #58a6ff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; }
+        .card h4 { color: #58a6ff; margin-bottom: 10px; }
+        .card p { color: #8b949e; font-size: 0.9rem; }
+        .card .link { color: #58a6ff; text-decoration: none; font-size: 0.85rem; }
+        .card .link:hover { text-decoration: underline; }
+        ul { margin: 10px 0 15px 20px; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">&larr; Back to Home</a>
+        <h1>Summary & Comparison</h1>
+        <p>Complete overview of all repositories, papers, and methods analyzed for building self-improving LLM coding pipelines.</p>
+
+        <!-- Cloned Repos -->
+        <h2>Cloned Repositories (7)</h2>
+        <div class="grid">
+            <div class="card">
+                <h4>opencode-orchestrator <span class="tag green">Enterprise</span></h4>
+                <p>60+ agents, swarm coordination, Q-learning router, consensus protocols</p>
+                <a href="repos/opencode-orchestrator.html" class="link">View Details &rarr;</a>
+            </div>
+            <div class="card">
+                <h4>bmo-agent <span class="tag green">Self-Improving</span></h4>
+                <p>Tool generation, reflection loop, model tiering, session persistence</p>
+                <a href="repos/bmo-agent.html" class="link">View Details &rarr;</a>
+            </div>
+            <div class="card">
+                <h4>opencode-pipeline-template <span class="tag">Pipeline</span></h4>
+                <p>3-layer separation (skill/subagent/command), 11 methodology templates</p>
+                <a href="repos/opencode-pipeline-template.html" class="link">View Details &rarr;</a>
+            </div>
+            <div class="card">
+                <h4>ouroboros <span class="tag purple">Agent OS</span></h4>
+                <p>Interview&rarr;Seed&rarr;Execute&rarr;Evaluate evolutionary loop</p>
+                <a href="repos/ouroboros.html" class="link">View Details &rarr;</a>
+            </div>
+            <div class="card">
+                <h4>cc-sdd <span class="tag">Spec-Driven</span></h4>
+                <p>17 skills, 8 agent support, per-task independent review</p>
+                <a href="repos/cc-sdd.html" class="link">View Details &rarr;</a>
+            </div>
+            <div class="card">
+                <h4>opencode-agents <span class="tag">Structuring</span></h4>
+                <p>Domain/Advisory/Cross-cutting taxonomy, ticket-driven workflow</p>
+                <a href="repos/opencode-agents.html" class="link">View Details &rarr;</a>
+            </div>
+            <div class="card">
+                <h4>awesome-self-evolving-agents <span class="tag yellow">Research</span></h4>
+                <p>90+ papers, 13 topics, safety section, runnable demos</p>
+                <a href="repos/awesome-self-evolving-agents.html" class="link">View Details &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Academic Papers -->
+        <h2>Academic Papers (5)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Paper</th>
+                    <th>Year</th>
+                    <th>Core Idea</th>
+                    <th>Performance</th>
+                    <th>Safety</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SICA</strong></td>
+                    <td>2025</td>
+                    <td>Agent edits itself (prompts/tools)</td>
+                    <td><span class="tag green">17-53%</span> SWE-Bench</td>
+                    <td><span class="tag yellow">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Self-Harness</strong></td>
+                    <td>2026</td>
+                    <td>Harnesses improve themselves</td>
+                    <td><span class="tag green">15-52%</span> Terminal-Bench</td>
+                    <td><span class="tag yellow">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>AlphaEvolve</strong></td>
+                    <td>2025</td>
+                    <td>Evolutionary coding with LLMs</td>
+                    <td><span class="tag green">Novel algorithms</span></td>
+                    <td><span class="tag green">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>STOP</strong></td>
+                    <td>2024</td>
+                    <td>Safe recursive self-improvement</td>
+                    <td><span class="tag green">Proven safety</span></td>
+                    <td><span class="tag green">Proven</span></td>
+                </tr>
+                <tr>
+                    <td><strong>CER</strong></td>
+                    <td>2025</td>
+                    <td>Contextual experience replay</td>
+                    <td><span class="tag green">+30-40%</span></td>
+                    <td><span class="tag green">High</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- LLM Controlling OpenCode -->
+        <h2>LLM Controlling OpenCode Methods (5)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>External Agent</th>
+                    <th>Complexity</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Hermes Agent + OpenCode Skill</strong></td>
+                    <td>Hermes</td>
+                    <td><span class="tag yellow">Medium</span></td>
+                    <td>Full orchestration</td>
+                </tr>
+                <tr>
+                    <td><strong>HermesOC</strong></td>
+                    <td>Hermes</td>
+                    <td><span class="tag green">Low</span></td>
+                    <td>Embedded coding</td>
+                </tr>
+                <tr>
+                    <td><strong>Autonomous Dev Team</strong></td>
+                    <td>Any CLI</td>
+                    <td><span class="tag red">High</span></td>
+                    <td>Issue&rarr;PR automation</td>
+                </tr>
+                <tr>
+                    <td><strong>Claude Code Bridge</strong></td>
+                    <td>Claude Code</td>
+                    <td><span class="tag yellow">Medium</span></td>
+                    <td>Benchmarking</td>
+                </tr>
+                <tr>
+                    <td><strong>OpenCode CLI Direct</strong></td>
+                    <td>None</td>
+                    <td><span class="tag green">Low</span></td>
+                    <td>Simple automation</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Architecture Patterns -->
+        <h2>Architecture Patterns (6)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pattern</th>
+                    <th>Complexity</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Orchestrator-Worker</strong></td>
+                    <td><span class="tag green">Low-Medium</span></td>
+                    <td>General multi-agent</td>
+                </tr>
+                <tr>
+                    <td><strong>Pipeline</strong></td>
+                    <td><span class="tag green">Low</span></td>
+                    <td>Sequential workflows</td>
+                </tr>
+                <tr>
+                    <td><strong>Fan-Out/Fan-In</strong></td>
+                    <td><span class="tag yellow">Medium</span></td>
+                    <td>Parallel processing</td>
+                </tr>
+                <tr>
+                    <td><strong>Priority Queue Loop</strong></td>
+                    <td><span class="tag yellow">Medium</span></td>
+                    <td>Continuous operation</td>
+                </tr>
+                <tr>
+                    <td><strong>Self-Improving Loop</strong></td>
+                    <td><span class="tag red">High</span></td>
+                    <td>Adaptive systems</td>
+                </tr>
+                <tr>
+                    <td><strong>Spec-Driven</strong></td>
+                    <td><span class="tag red">High</span></td>
+                    <td>Safety-critical</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Master Comparison -->
+        <h2>Master Comparison Table</h2>
+        <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Repo/Paper</th>
+                    <th>Self-Improvement</th>
+                    <th>Orchestration</th>
+                    <th>Safety</th>
+                    <th>OpenCode</th>
+                    <th>Maturity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>opencode-orchestrator</strong></td>
+                    <td>Q-Learning, SONA</td>
+                    <td>60+ agents, swarm</td>
+                    <td>Consensus protocols</td>
+                    <td><span class="tag green">Native</span></td>
+                    <td><span class="tag green">Active</span></td>
+                </tr>
+                <tr>
+                    <td><strong>bmo-agent</strong></td>
+                    <td>Reflection + tool gen</td>
+                    <td>Single agent</td>
+                    <td>Sandbox isolation</td>
+                    <td><span class="tag yellow">Standalone</span></td>
+                    <td><span class="tag green">Stable</span></td>
+                </tr>
+                <tr>
+                    <td><strong>opencode-pipeline-template</strong></td>
+                    <td>None</td>
+                    <td>Pipeline (3-layer)</td>
+                    <td>Permission sandbox</td>
+                    <td><span class="tag green">Native</span></td>
+                    <td><span class="tag green">Stable</span></td>
+                </tr>
+                <tr>
+                    <td><strong>ouroboros</strong></td>
+                    <td>Evolutionary loops</td>
+                    <td>10+ agents</td>
+                    <td>Policy boundaries</td>
+                    <td><span class="tag green">Multi-runtime</span></td>
+                    <td><span class="tag green">Active</span></td>
+                </tr>
+                <tr>
+                    <td><strong>cc-sdd</strong></td>
+                    <td>Auto-debug on failure</td>
+                    <td>17 skills</td>
+                    <td>Independent review</td>
+                    <td><span class="tag green">Native</span></td>
+                    <td><span class="tag green">Stable</span></td>
+                </tr>
+                <tr>
+                    <td><strong>opencode-agents</strong></td>
+                    <td>None</td>
+                    <td>Ticket-driven</td>
+                    <td>Issue-based</td>
+                    <td><span class="tag green">Native</span></td>
+                    <td><span class="tag green">Stable</span></td>
+                </tr>
+                <tr>
+                    <td><strong>awesome-self-evolving-agents</strong></td>
+                    <td>N/A (reference)</td>
+                    <td>N/A</td>
+                    <td>Misevolution warnings</td>
+                    <td>N/A</td>
+                    <td><span class="tag yellow">Reference</span></td>
+                </tr>
+                <tr>
+                    <td><strong>SICA (paper)</strong></td>
+                    <td>Agent edits itself</td>
+                    <td>N/A</td>
+                    <td><span class="tag yellow">Medium</span></td>
+                    <td>N/A</td>
+                    <td><span class="tag purple">Research</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Self-Harness (paper)</strong></td>
+                    <td>Harness improves</td>
+                    <td>N/A</td>
+                    <td><span class="tag yellow">Medium</span></td>
+                    <td>N/A</td>
+                    <td><span class="tag purple">Research</span></td>
+                </tr>
+                <tr>
+                    <td><strong>AlphaEvolve (paper)</strong></td>
+                    <td>Evolutionary</td>
+                    <td>N/A</td>
+                    <td><span class="tag green">High</span></td>
+                    <td>N/A</td>
+                    <td><span class="tag purple">Research</span></td>
+                </tr>
+                <tr>
+                    <td><strong>STOP (paper)</strong></td>
+                    <td>Recursive with proofs</td>
+                    <td>N/A</td>
+                    <td><span class="tag green">Proven safe</span></td>
+                    <td>N/A</td>
+                    <td><span class="tag purple">Research</span></td>
+                </tr>
+                <tr>
+                    <td><strong>CER (paper)</strong></td>
+                    <td>Experience replay</td>
+                    <td>N/A</td>
+                    <td><span class="tag green">High</span></td>
+                    <td>N/A</td>
+                    <td><span class="tag purple">Research</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <!-- Best For -->
+        <h2>Best For Each Use Case</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Use Case</th>
+                    <th>Best Source</th>
+                    <th>Why</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Enterprise multi-agent</td>
+                    <td><strong>opencode-orchestrator</strong></td>
+                    <td>60+ agents, swarm, consensus</td>
+                </tr>
+                <tr>
+                    <td>Self-improving agent</td>
+                    <td><strong>bmo-agent + SICA</strong></td>
+                    <td>True self-improvement loop</td>
+                </tr>
+                <tr>
+                    <td>Pipeline patterns</td>
+                    <td><strong>opencode-pipeline-template</strong></td>
+                    <td>Clean 3-layer separation</td>
+                </tr>
+                <tr>
+                    <td>Spec-driven development</td>
+                    <td><strong>cc-sdd</strong></td>
+                    <td>17 skills, 8 agent support</td>
+                </tr>
+                <tr>
+                    <td>Agent structuring</td>
+                    <td><strong>opencode-agents</strong></td>
+                    <td>Clean taxonomy, ticket-driven</td>
+                </tr>
+                <tr>
+                    <td>Agent OS</td>
+                    <td><strong>ouroboros</strong></td>
+                    <td>Most sophisticated architecture</td>
+                </tr>
+                <tr>
+                    <td>Research reference</td>
+                    <td><strong>awesome-self-evolving-agents</strong></td>
+                    <td>90+ papers, safety section</td>
+                </tr>
+                <tr>
+                    <td>Orchestrating OpenCode</td>
+                    <td><strong>Hermes Agent + OpenCode skill</strong></td>
+                    <td>Built-in skill, full control</td>
+                </tr>
+                <tr>
+                    <td>Safe self-improvement</td>
+                    <td><strong>STOP paper</strong></td>
+                    <td>Mathematical safety proofs</td>
+                </tr>
+                <tr>
+                    <td>Learning from experience</td>
+                    <td><strong>CER paper</strong></td>
+                    <td>Context-aware replay</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Recommended Stack -->
+        <h2>Recommended Stack for Our Project</h2>
+        <div class="highlight">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Component</th>
+                        <th>Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Orchestration</td>
+                        <td><strong>OpenCode Orchestrator</strong></td>
+                        <td>opencode-orchestrator</td>
+                    </tr>
+                    <tr>
+                        <td>Self-Improvement</td>
+                        <td><strong>SICA + bmo-agent approach</strong></td>
+                        <td>SICA paper + bmo-agent</td>
+                    </tr>
+                    <tr>
+                        <td>Experience Memory</td>
+                        <td><strong>CER contextual replay</strong></td>
+                        <td>CER paper</td>
+                    </tr>
+                    <tr>
+                        <td>Safety</td>
+                        <td><strong>STOP principles</strong></td>
+                        <td>STOP paper</td>
+                    </tr>
+                    <tr>
+                        <td>Spec-Driven</td>
+                        <td><strong>cc-sdd patterns</strong></td>
+                        <td>cc-sdd</td>
+                    </tr>
+                    <tr>
+                        <td>Pipeline</td>
+                        <td><strong>3-layer separation</strong></td>
+                        <td>opencode-pipeline-template</td>
+                    </tr>
+                    <tr>
+                        <td>LLM Control</td>
+                        <td><strong>Hermes Agent + OpenCode skill</strong></td>
+                        <td>Hermes Agent</td>
+                    </tr>
+                    <tr>
+                        <td>Monitoring</td>
+                        <td><strong>Progress dashboard</strong></td>
+                        <td>Hermes Studio / MLflow</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
