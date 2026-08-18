@@ -22,11 +22,8 @@
         ul { margin: 10px 0 15px 20px; }
         li { margin-bottom: 8px; }
         .diagram { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; text-align: center; margin: 20px 0; overflow-x: auto; }
+        .diagram img { max-width: 100%; height: auto; }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
-    </script>
 </head>
 <body>
     <div class="container">
@@ -49,17 +46,7 @@
 
         <h2>The Dream Architecture</h2>
         <div class="diagram">
-            <pre class="mermaid">
-graph TD
-    H[Human User Inputs Goal] --> P[Planner Agent LLM]
-    P --> C[Coding Agent Backend]
-    P --> R[Reviewer Agent Quality]
-    P --> D[Doc Writer Docs]
-    C --> Dashboard[Progress Dashboard Real-time]
-    R --> Dashboard
-    D --> Dashboard
-    Dashboard --> PA[Permission Auto-Accept]
-            </pre>
+            <img src="diagrams/vision_diagram_1.svg" alt="Vision Architecture">
         </div>
 
         <h2>Key Components</h2>
