@@ -20,10 +20,15 @@ OpenCode Orchestrator (formerly Claude Flow/Ruflo) is an enterprise-grade AI age
 
 ## Architecture
 
-```
-User → OpenCode Orchestrator (CLI/MCP) → Router → Swarm → Agents → Memory → LLM Providers
-                       ↑                          ↓
-                       └──── Learning Loop ←──────┘
+```mermaid
+graph LR
+    U[User] --> O[OpenCode Orchestrator]
+    O --> R[Router]
+    R --> S[Swarm]
+    S --> A[Agents]
+    A --> M[Memory]
+    M --> L[LLM Providers]
+    L -->|Learning Loop| O
 ```
 
 ## Installation

@@ -19,6 +19,19 @@ A curated, deliberately opinionated map of **self-evolving / self-improving LLM 
 
 ## The Four Evolution Pathways
 
+```mermaid
+graph TD
+    A[Self-Evolving Agent] --> B[Prompt Evolution]
+    A --> C[Tool Evolution]
+    A --> D[Memory Evolution]
+    A --> E[Weight Evolution]
+    
+    B --> B1[Improve Prompts]
+    C --> C1[Create Tools]
+    D --> D1[Optimize Memory]
+    E --> E1[Fine-tune Weights]
+```
+
 1. **Prompt Evolution:** Agents improve their own prompts
 2. **Tool Evolution:** Agents create and refine tools
 3. **Memory Evolution:** Agents optimize their memory systems

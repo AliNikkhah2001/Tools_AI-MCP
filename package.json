@@ -1,0 +1,24 @@
+{
+  "name": "tools_ai-mcp",
+  "version": "1.0.0",
+  "description": "> **A production-ready OpenCode configuration for autonomous multi-agent coding pipelines with continuous flow, real-time dashboards, and zero-stop orchestration.**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliNikkhah2001/Tools_AI-MCP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AliNikkhah2001/Tools_AI-MCP/issues"
+  },
+  "homepage": "https://github.com/AliNikkhah2001/Tools_AI-MCP#readme"
+}

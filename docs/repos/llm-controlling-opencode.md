@@ -6,10 +6,12 @@ This page documents how to use an LLM (like Hermes Agent, Claude Code, or Codex 
 
 ## The Vision
 
-```
-Human → LLM (Hermes/Claude/Codex) → OpenCode CLI → Code Changes
-         ↑                                    ↓
-         └──── Feedback Loop ←────────────────┘
+```mermaid
+graph LR
+    H[Human] --> L[LLM Orchestrator]
+    L --> O[OpenCode CLI]
+    O --> C[Code Changes]
+    C -->|Feedback Loop| L
 ```
 
 An LLM orchestrates OpenCode to:
@@ -216,36 +218,48 @@ response = "".join(texts)
 
 For our "LLM controls OpenCode" vision:
 
+```mermaid
+graph TD
+    H[Human Input] -->|Goal| O[Orchestrator LLM]
+    O -->|Plans| T[Tasks]
+    T -->|Delegates| C[OpenCode CLI]
+    C -->|Executes| R[Code Changes]
+    R -->|Reports| O
+    O -->|Reviews| A[Analysis]
+    A -->|Improves| P[Prompt Optimization]
+    P --> O
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    HUMAN INPUT                          │
-│              (Goal, not instructions)                   │
-└─────────────────────┬───────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────┐
-│              ORCHESTRATOR LLM (Hermes)                  │
-│  • Plans tasks                                          │
-│  • Delegates to OpenCode                                │
-│  • Monitors progress                                    │
-│  • Reviews results                                      │
-└─────────────────────┬───────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────┐
-│                   OpenCode CLI                          │
-│  • Executes coding tasks                                │
-│  • Uses specialized agents                              │
-│  • Reports results                                      │
-└─────────────────────┬───────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────┐
-│              SELF-IMPROVEMENT LOOP                      │
-│  • Analyzes results                                     │
-│  • Improves prompts                                     │
-│  • Updates agent configs                                │
-└─────────────────────────────────────────────────────────┘
+
+```mermaid
+graph TD
+    subgraph ORCHESTRATOR["Orchestrator LLM"]
+        P[Plan Tasks]
+        D[Delegate]
+        M[Monitor]
+        R[Review]
+    end
+    
+    subgraph OPENCODE["OpenCode CLI"]
+        E[Execute Coding]
+        AG[Use Agents]
+        RE[Report Results]
+    end
+    
+    subgraph LOOP["Self-Improvement"]
+        AN[Analyze Results]
+        IP[Improve Prompts]
+        UC[Update Configs]
+    end
+    
+    P --> D
+    D --> E
+    E --> RE
+    RE --> M
+    M --> R
+    R --> AN
+    AN --> IP
+    IP --> UC
+    UC --> P
 ```
 
 ## Quick Start

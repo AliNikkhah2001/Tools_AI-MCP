@@ -17,29 +17,33 @@ A template repo and reference guide for building AI agent systems with OpenCode.
 
 ## Architecture
 
-```
-+-------------------------------------------------------------+
-|                    USER / HUMAN                             |
-+---------------------------+---------------------------------+
-                            |  talks to
-                            v
-+-------------------------------------------------------------+
-|              ENGINEERING LEAD (primary)                     |
-|  - Plans and delegates -- never writes code                 |
-|  - Owns GitHub Project and Issue operations                 |
-|  - Routes work to the right agent at the right time        |
-|  - Enforces: No Ticket, No Work                            |
-+------+---------------+--------------+----------------------+
-       |               |              |
-       v               v               v
-+-----------+   +------------+  +----------------------------+
-|  DOMAIN   |   |  ADVISORY  |  |      CROSS-CUTTING        |
-|  AGENTS   |   |   AGENTS   |  |        AGENTS             |
-|           |   |            |  |                           |
-| Own code  |   | Read-only  |  | @test    -- all tests     |
-| in their  |   | reviewers  |  | @document -- all docs     |
-| dirs      |   | No edits   |  | @release  -- git + CI/CD  |
-+-----------+   +------------+  +----------------------------+
+```mermaid
+graph TD
+    U[User/Human] -->|talks to| EL[Engineering Lead]
+    
+    EL -->|delegates| DA[Domain Agents]
+    EL -->|delegates| AA[Advisory Agents]
+    EL -->|delegates| CA[Cross-Cutting Agents]
+    
+    subgraph DOMAIN["Domain Agents"]
+        D1[vault-core]
+        D2[tui]
+    end
+    
+    subgraph ADVISORY["Advisory Agents"]
+        A1[security]
+        A2[architecture]
+    end
+    
+    subgraph CROSS["Cross-Cutting Agents"]
+        C1[test]
+        C2[document]
+        C3[release]
+    end
+    
+    DA --> DOMAIN
+    AA --> ADVISORY
+    CA --> CROSS
 ```
 
 ## Agent Types

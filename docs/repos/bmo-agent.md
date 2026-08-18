@@ -38,6 +38,24 @@ src/
 
 ## How Self-Improvement Works
 
+```mermaid
+graph LR
+    subgraph LOOP["Self-Improvement Loop"]
+        E[Execute Task]
+        R[Reflect on Failure]
+        G[Generate Tool]
+        S[Save Skill]
+        M[Maintenance]
+    end
+
+    E -->|Success| E
+    E -->|Failure| R
+    R --> G
+    G --> S
+    S --> M
+    M --> E
+```
+
 1. **Task Execution:** Agent attempts a task with tools
 2. **Reflection:** On failure, agent reflects on what went wrong
 3. **Tool Generation:** Agent generates new tools to handle similar tasks

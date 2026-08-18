@@ -16,6 +16,19 @@ Build production-grade LLM code generation pipelines using OpenCode's native ski
 
 ## Architecture
 
+```mermaid
+graph TD
+    U[User] -->|/fix-tests| C[Command]
+    C -->|routes| SA[Subagent]
+    SA -->|loads| SK[Skill]
+    SA -->|runs| P[pytest]
+    P -->|failures| F[Fix Code]
+    F -->|verify| P
+    SA -->|enforces| PS[Permission Sandbox]
+    PS -->|boundaries| F
+    SA -->|returns| R[Result]
+```
+
 ```
 User types /fix-tests my-module
   → Command routes to pipeline-test-fix subagent

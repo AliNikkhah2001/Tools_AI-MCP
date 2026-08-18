@@ -22,6 +22,22 @@ cc-sdd brings structured Spec-Driven Development to AI coding agents. It turns a
 
 ## Workflow
 
+```mermaid
+graph TD
+    A[Discovery] -->|brief.md| B[Spec Init]
+    B --> C[Requirements]
+    C --> D[Design]
+    D --> E[Tasks]
+    E --> F[Implementation]
+    F -->|Per Task| G[Fresh Implementer]
+    F -->|Per Task| H[Independent Reviewer]
+    G -->|Failure| I[Auto-Debug]
+    I --> G
+    G -->|Success| J[Task Complete]
+    H -->|Pass| J
+    H -->|Fail| G
+```
+
 ```
 /kiro-discovery <idea>
   → brief.md (and roadmap.md for multi-spec)

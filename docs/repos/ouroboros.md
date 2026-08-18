@@ -29,10 +29,12 @@ Ouroboros is an **Agent OS** for AI coding: a local-first runtime layer that tur
 
 ## How It Works
 
-```
-Interview → Seed → Execute → Evaluate
-    ↑                           ↓
-    └─── Evolutionary Loop ─────┘
+```mermaid
+graph LR
+    I[Interview] --> S[Seed]
+    S --> E[Execute]
+    E --> V[Evaluate]
+    V -->|Evolutionary Loop| I
 ```
 
 1. **Interview:** Socratic questioning to clarify requirements
