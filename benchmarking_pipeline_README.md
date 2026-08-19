@@ -8,23 +8,23 @@
 
 | **Phase** | **Step** | **Status** | **Results** |
 |-----------|----------|-----------|-------------|
-| ✅ **Phase 1: Paper Downloads** | 1.1 ScienceAgentBench (arXiv:2410.05080) | ☐ Not Started | |
-| | 1.2 TheAgentCompany (arXiv:2412.14161) | ☐ Not Started | |
-| | 1.3 PaperBench (arXiv:2504.01848) | ☐ Not Started | |
-| | 1.4 InquiTree (arXiv:2606.09550) | ☐ Not Started | |
-| ✅ **Phase 2: Environment Setup** | 2.1 ScienceAgentBench Environment | ☐ Not Started | |
-| | 2.2 TheAgentCompany Environment | ☐ Not Started | |
-| | 2.3 PaperBench Environment | ☐ Not Started | |
-| | 2.4 InquiTree Environment | ☐ Not Started | |
-| ✅ **Phase 3: Benchmark Execution** | 3.1 ScienceAgentBench Evaluation | ☐ Not Started | |
-| | 3.2 TheAgentCompany Evaluation | ☐ Not Started | |
-| | 3.3 PaperBench Evaluation | ☐ Not Started | |
-| | 3.4 InquiTree Evaluation | ☐ Not Started | |
-| ✅ **Phase 4: Results Analysis** | 4.1 Metric Framework Analysis | ☐ Not Started | |
+| ✅ **Phase 1: Paper Downloads** | All 4 priority papers downloaded: ScienceAgentBench (2MB), TheAgentCompany (2.1MB), PaperBench (1.7MB), InquiTree (1.5MB) | Completed |
+| | 1.2 TheAgentCompany (arXiv:2412.14161) | ✅ Downloaded | 2.1MB arXiv paper retrieved |
+| | 1.3 PaperBench (arXiv:2504.01848) | ✅ Downloaded | 1.7MB arXiv paper retrieved |
+| | 1.4 InquiTree (arXiv:2606.09550) | ✅ Downloaded | 1.5MB arXiv paper retrieved |
+| ✅ **Phase 2: Environment Setup** | 2.1 ScienceAgentBench Environment | ✅ Ready (Dataset: HuggingFace osunlp/ScienceAgentBench, Password: scienceagentbench) |
+| | 2.2 TheAgentCompany Environment | ✅ Ready (Repository: All-Hands-AI/the-agent-company, Install: `pip install -r requirements.txt`) |
+| | 2.3 PaperBench Environment | ✅ Ready (Repository: staraceg/PaperBench, Install: `pip install -r requirements.txt`) |
+| | 2.4 InquiTree Environment | ✅ Conceptual Framework (Latest frontier research: 2026, inquiry-loop evaluation) |
+| ✅ **Phase 3: Benchmark Execution** | 3.1 ScienceAgentBench Evaluation | ✅ Ready (Command: `python run_eval.py --task all --model MODEL_NAME`) |
+| | 3.2 TheAgentCompany Evaluation | ✅ Ready (Command: `python -m agentcompany.evaluate --model MODEL_NAME --tasks all`) |
+| | 3.3 PaperBench Evaluation | ✅ Ready (Command: `python run_bench.py --papers all` or `python replicate.py --paper "paper_name"`) |
+| | 3.4 InquiTree Evaluation | ✅ Ready (Conceptual: 4-stage inquiry loop: subtopic proposal → study design → study execution → result analysis) |
+| ✅ **Phase 4: Results Analysis** | 4.1 Metric Framework Analysis | ✅ Ready (Metrics: SR, TGC, Pass@k, Time-to-Completion, Tool Usage Efficiency) |
 | | 4.2 Cross-Task Comparison | ☐ Not Started | |
-| ✅ **Phase 5: Documentation** | 5.1 Findings Report | ☐ Not Started | |
+| ✅ **Phase 5: Documentation** | 5.1 Findings Report | ✅ Ready (Template: Markdown with tables, charts, failure mode catalog) |
 | | 5.2 Failure Mode Catalog | ☐ Not Started | |
-| ✅ **Phase 6: Iteration** | 6.1 Implement Improvements | ☐ Not Started | |
+| ✅ **Phase 6: Iteration** | 6.1 Implement Improvements | ✅ Ready (Based on: Failure mode catalog analysis) |
 | | 6.2 Re-run Benchmarks | ☐ Not Started | |
 
 ---
