@@ -1,0 +1,46 @@
+{
+  "agents": {
+    "agent-1787069733124-koyyv1": {
+      "agentId": "agent-1787069733124-koyyv1",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic"
+      },
+      "createdAt": "2026-08-18T16:15:33.124Z",
+      "model": "sonnet",
+      "modelRoutedBy": "default"
+    },
+    "agent-1787069793020-junm3e": {
+      "agentId": "agent-1787069793020-junm3e",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic",
+        "task": "Research Obsidian application, find relevant toolings and Python tools for graph dynamic plotting, and markdown editor toolings, then create a sophisticated markdown editor compiled to graphs in Obsidian style"
+      },
+      "createdAt": "2026-08-18T16:16:33.035Z",
+      "model": "haiku",
+      "modelRoutedBy": "router"
+    },
+    "agent-1787069838319-y5lk74": {
+      "agentId": "agent-1787069838319-y5lk74",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "provider": "anthropic",
+        "task": "Start by exploring the project structure and researching Obsidian graph capabilities, Python graph tools, and markdown editors. First, list the current directory structure, then search for any existing graph/plotting code, and check for Obsidian-related documentation."
+      },
+      "createdAt": "2026-08-18T16:17:18.342Z",
+      "model": "sonnet",
+      "modelRoutedBy": "router"
+    }
+  },
+  "version": "3.0.0"
+}

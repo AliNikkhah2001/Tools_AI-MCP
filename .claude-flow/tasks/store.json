@@ -1,0 +1,20 @@
+{
+  "tasks": {
+    "task-1787069694060-pzpgtg": {
+      "taskId": "task-1787069694060-pzpgtg",
+      "type": "research",
+      "description": "Research Obsidian application, find relevant toolings and Python tools for graph dynamic plotting, and markdown editor toolings, then create a sophisticated markdown editor compiled to graphs in Obsidian style",
+      "priority": "normal",
+      "status": "pending",
+      "progress": 0,
+      "assignedTo": [
+        "agent-1787069733124-koyyv1"
+      ],
+      "tags": [],
+      "createdAt": "2026-08-18T16:14:54.060Z",
+      "startedAt": null,
+      "completedAt": null
+    }
+  },
+  "version": "3.0.0"
+}
