@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaperBench: AI Research Replication Evaluation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+        .hero { text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #161b22, #21262d); }
+        .hero h1 { font-size: 2.5rem; color: #58a6ff; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; color: #8b949e; max-width: 700px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 30px; border-bottom: 1px solid #30363d; padding-bottom: 15px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 25px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 4px; }
+        .tag.purple { background: #a371f733; color: #d2a8ff; }
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .card h4 { color: #58a6ff; margin-bottom: 10px; font-size: 1.1rem; }
+        .card p { color: #8b949e; font-size: 0.95rem; margin-bottom: 15px; }
+        .code-block { background: #1f6feb11; border: 1px solid #1f6feb33; border-radius: 4px; padding: 20px; margin: 20px 0; overflow-x: auto; }
+        .code-block pre { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #c9d1d9; margin: 0; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .feature-item { background: #1e1e1e; padding: 15px; border-radius: 4px; }
+        .feature-item h4 { color: #58a6ff; margin-bottom: 8px; font-size: 1rem; }
+        .footer { text-align: center; padding: 40px; color: #484f58; border-top: 1px solid #21262d; margin-top: 60px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
+        th, td { border: 1px solid #30363d; padding: 10px; text-align: left; }
+        th { background: #161b22; color: #58a6ff; font-weight: 600; white-space: nowrap; }
+        tr:hover { background: #161b22; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>PaperBench</h1>
+        <p>Evaluating AI's Ability to Replicate AI Research</p>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back">&larr; Back to Home</a>
+
+        <h2>Overview</h2>
+        <div class="card">
+            <p>PaperBench evaluates AI's ability to replicate published AI research papers. The benchmark measures methodological fidelity, result replication accuracy, and code quality when agents attempt to reproduce published research approaches.</p>
+        </div>
+
+        <h2>Key Statistics</h2>
+        <div class="features">
+            <div class="feature-item">
+                <h4>13+ Papers</h4>
+                <p>AI/ML papers for replication</p>
+            </div>
+            <div class="feature-item">
+                <h4>Result Replication</h4>
+                <p>Numerical accuracy of reproduced results</p>
+            </div>
+            <div class="feature-item">
+                <h4>Methodological Fidelity</h4>
+                <p>Faithfulness to original paper's approach</p>
+            </div>
+            <div class="feature-item">
+                <h4>Code Quality</h4>
+                <p>Completeness and correctness of generated code</p>
+            </div>
+        </div>
+
+        <h2>Replication Process</h2>
+        <div class="card">
+            <ol>
+                <li><strong>Read and understand</strong> a published AI research paper</li>
+                <li><strong>Replicate the methodology</strong> as described in the paper</li>
+                <li><strong>Reproduce the reported results</strong> using the same data/code</li>
+                <li><strong>Generate code</strong> that matches the paper's approach</li>
+                <li><strong>Verify output</strong> matches expected results from the paper</li>
+            </ol>
+        </div>
+
+        <h2>Evaluation Metrics</h2>
+        <div class="card">
+            <ul>
+                <li><strong>Result Accuracy:</strong> Numerical closeness to reported results (<em>e.g.,</em> loss values, accuracy scores)</li>
+                <li><strong>Methodological Fidelity:</strong> Faithfulness to the original paper's approach and assumptions</li>
+                <li><strong>Code Completeness:</strong> Percentage of expected code functions/features implemented</li>
+                <li><strong>Documentation Quality:</strong> Clarity and completeness of replication documentation</li>
+            </ul>
+        </div>
+
+        <h2>Getting Started</h2>
+        <div class="code-block">
+            <pre># Install PaperBench
+git clone https://github.com/staraceg/PaperBench.git
+cd PaperBench
+pip install -r requirements.txt
+
+# Replicate a sample paper
+python replicate.py --paper "attention-is-all-you-need"
+
+# Run all benchmarks
+python run_bench.py --papers all</pre>
+        </div>
+
+        <h2>Sample Replication: Attention Is All You Need</h2>
+        <div class="card">
+            <p>Task: Reproduce the key results from the original Transformer paper "Attention Is All You Need" (Vaswani et al., 2017). Agents must:</p>
+            <ul>
+                <li>Implement the Transformer architecture from scratch</li>
+                <li>Train on WMT 2014 English-German translation task</li>
+                <li>Achieve BLEU scores comparable to the original paper</li>
+                <li>Generate training curves matching the reported progression</li>
+            </ul>
+        </div>
+
+        <div class="card" style="margin-top: 40px;">
+            <h4>Replication Success Rates</h4>
+            <p>Benchmark findings indicate:</p>
+            <ul>
+                <li>GPT-4 level models achieve ~20-30% full replication success</li>
+                <li>Primary challenge: matching training hyperparameters and data preprocessing</li>
+                <li>Secondary challenge: reproducing exact numerical results due to floating-point variations</li>
+                <li>Methodological replication (architecture, training pipeline) easier than exact result replication</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>PaperBench Evaluation | OpenCode Multi-Agent Orchestration Research</p>
+        <p><a href="https://github.com/AliNikkhah2001/Tools_AI-MCP" style="color: #58a6ff;">View on GitHub</a> | <a href="index.html">Back to Home</a></p>
+    </div>
+</body>
+</html>

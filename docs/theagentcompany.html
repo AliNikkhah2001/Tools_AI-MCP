@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheAgentCompany: Real World LLM Agent Evaluation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: bordertoe-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+        .hero { text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #161b22, #21262d); }
+        .hero h1 { font-size: 2.5rem; color: #58a6ff; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; color: #8b949e; max-width: 700px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #58a6ff; font-size: 2.2rem; margin-bottom: 30px; border-bottom: 1px solid #30363d; padding-bottom: 15px; }
+        h2 { color: #79c0ff; font-size: 1.5rem; margin: 25px 0 15px; }
+        h3 { color: #d2a8ff; font-size: 1.2rem; margin: 20px 0 10px; }
+        .back { color: #58a6ff; text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        .back:hover { text-decoration: underline; }
+        .tag { display: inline-block; background: #1f6feb33; color: #58a6ff; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; margin: 4px; }
+        .tag.purple { background: #a371f733; color: #d2a8ff; }
+        .tag.green { background: #2ea04333; color: #3fb950; }
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 25px; margin: 20px 0; }
+        .card h4 { color: #58a6ff; margin-bottom: 10px; font-size: 1.1rem; }
+        .card p { color: #8b949e; font-size: 0.95rem; margin-bottom: 15px; }
+        .code-block { background: #1f6feb11; border: 1px solid #1f6feb33; border-radius: 4px; padding: 20px; margin: 20px 0; overflow-x: auto; }
+        .code-block pre { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #c9d1d9; margin: 0; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .feature-item { background: #1e1e1e; padding: 15px; border-radius: 4px; }
+        .feature-item h4 { color: #58a6ff; margin-bottom: 8px; font-size: 1rem; }
+        .footer { text-align: center; padding: 40px; color: #484f58; border-top: 1px solid #21262d; margin-top: 60px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
+        th, td { border: 1px solid #30363d; padding: 10px; text-align: left; }
+        th { background: #161b22; color: #58a6ff; font-weight: 600; white-space: nowrap; }
+        tr:hover { background: #161b22; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>TheAgentCompany</h1>
+        <p>Benchmarking LLM Agents on Consequential Real World Tasks</p>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back">&larr; Back to Home</a>
+
+        <h2>Overview</h2>
+        <div class="card">
+            <p>TheAgentCompany introduces a comprehensive benchmark for evaluating LLM agents on real-world tasks within a simulated software company environment. The benchmark provides an extensible platform that reflects professional settings, allowing assessment of tasks such as web browsing, coding, program execution, and multi-turn communication with colleagues.</p>
+        </div>
+
+        <h2>Environment</h2>
+        <div class="features">
+            <div class="feature-item">
+                <h4>GitLab</h4>
+                <p>Version control and code management</p>
+            </div>
+            <div class="feature-item">
+                <h4>OwnCloud</h4>
+                <p>File storage and sharing</p>
+            </div>
+            <div class="feature-item">
+                <h4>RocketChat</h4>
+                <p>Team communication and collaboration</p>
+            </div>
+            <div class="feature-item">
+                <h4>Issue Tracker</h4>
+                <p>Task management and tracking</p>
+            </div>
+            <div class="feature-item">
+                <h4>Documentation System</h4>
+                <p>Knowledge base and references</p>
+            </div>
+        </div>
+
+        <h2>Key Metrics</h2>
+        <div class="card">
+            <p><strong>Task Completion Rate:</strong> ~30.3% for top-performing models (as reported in the original paper)</p>
+            <p><strong>Time-to-Completion:</strong> Measured in hours per task category</p>
+            <p><strong>Tool Usage Efficiency:</strong> Ratio of useful tool calls to total calls</p>
+            <p><strong>Communication Fidelity:</strong> Accuracy in multi-turn agent communication</p>
+        </div>
+
+        <h2>Task Categories</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <div style="height: 100px; background: #3a3a3a; border-radius: 4px; margin-bottom: 10px; color: #6e7681; display: flex; align-items: center; justify-content: center;">Web Browsing</div>
+                <div style="font-size: 0.8rem; color: #6e7681;">Information retrieval, form filling</div>
+            </div>
+            <div class="gallery-item">
+                <div style="height: 100px; background: #3a3a3a; border-radius: 4px; margin-bottom: 10px; color: #6e7681; display: flex; align-items: center; justify-content: center;">Coding</div>
+                <div style="font-size: 0.8rem; color: #6e7681;">Code modification, feature implementation</div>
+            </div>
+            <div class="gallery-item">
+                <div style="height: 100px; background: #3a3a3a; border-radius: 4px; margin-bottom: 10px; color: #6e7681; display: flex; align-items: center; justify-content: center;">Communication</div>
+                <div style="font-size: 0.8rem; color: #6e7681;">Message sending, clarification requests</div>
+            </div>
+            <div class="gallery-item">
+                <div style="height: 100px; background: #3a3a3a; border-radius: 4px; margin-bottom: 10px; color: #6e7681; display: flex; align-items: center; justify-content: center;">Program Execution</div>
+                <div style="font-size: 0.8rem; color: #6e7681;">Script running, result analysis</div>
+            </div>
+        </div>
+
+        <h2>Evaluation Framework</h2>
+        <div class="code-block">
+            <pre># Install TheAgentCompany
+git clone https://github.com/All-Hands-AI/the-agent-company.git
+cd the-agent-company
+pip install -r requirements.txt
+
+# Run evaluation
+python -m agentcompany.evaluate --model claude-3.5-sonnet --tasks all
+
+# Check leaderboard
+python -m agentcompany.leaderboard --update</pre>
+        </div>
+
+        <h2>Results & Analysis</h2>
+        <div class="card">
+            <p>The benchmark evaluates agents across multiple dimensions:</p>
+            <ul>
+                <li><strong>Autonomy:</strong> Degree of human intervention required</li>
+                <li><strong>Tool Selection:</strong> Quality and relevance of tool choices</li>
+                <li><strong>Reasoning:</strong> Quality of chain-of-thought and planning</li>
+                <li><strong>Error Recovery:</strong> Ability to handle and recover from failures</li>
+                <li><strong>Communication:</strong> Fidelity in multi-agent interactions</li>
+            </ul>
+        </div>
+
+        <div class="card" style="margin-top: 40px;">
+            <h4>Sample Case: Corporate Coding Task</h4>
+            <p>Task: Agents are given a GitHub-style issue and must implement a feature, including code modification, test creation, and documentation updates. The task evaluates the agent's ability to navigate a codebase, understand existing patterns, and produce working code that passes the project's test suite.</p>
+            <p><strong>Generated:</strong> 2026-08-18 | <strong>Benchmark:</code> TheAgentCompany v1.0 | <strong>Status:</code> Paper downloaded and environment ready</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>TheAgentCompany Evaluation | OpenCode Multi-Agent Orchestration Research</p>
+        <p><a href="https://github.com/AliNikkhah2001/Tools_AI-MCP" style="color: #58a6ff;">View on GitHub</a> | <a href="index.html">Back to Home</a></p>
+    </div>
+</body>
+</html>
