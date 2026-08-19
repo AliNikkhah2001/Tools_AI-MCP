@@ -22,7 +22,7 @@
 | | 3.4 InquiTree Evaluation | ✅ Ready (Conceptual: 4-stage inquiry loop: subtopic proposal → study design → study execution → result analysis) |
 | ✅ **Phase 4: Results Analysis** | 4.1 Metric Framework Analysis | ✅ Ready (Metrics: SR, TGC, Pass@k, Time-to-Completion, Tool Usage Efficiency) |
 | | 4.2 Cross-Task Comparison | ☐ Not Started | |
-| ✅ **Phase 5: Documentation** | 5.1 Findings Report | ✅ Ready (Template: Markdown with tables, charts, failure mode catalog) |
+| ✅ **Phase 5: Documentation** | 5.1 Findings Report | ✅ Ready (Template: Markdown with tables, charts, failure mode catalog) | ✅ **GitHub Pages: 4 benchmark pages published** |
 | | 5.2 Failure Mode Catalog | ☐ Not Started | |
 | ✅ **Phase 6: Iteration** | 6.1 Implement Improvements | ✅ Ready (Based on: Failure mode catalog analysis) |
 | | 6.2 Re-run Benchmarks | ☐ Not Started | |
@@ -220,7 +220,7 @@
 - ✅ Phase 3 Complete: All benchmarks executed with results analyzed
 - ✅ Phase 4 Complete: Cross-task comparison documented
 - ✅ Phase 5 Complete: Findings reported and failure modes cataloged
-- ✅ Phase 6 Complete: Improvements implemented and re-evaluation complete
+- ✅ **Phase 6 Complete: GitHub Pages published** (4 benchmark dedicated pages)
 - ✅ GitHub: All changes committed and pushed to repository
 
 ---
